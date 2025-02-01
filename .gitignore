@@ -1,0 +1,22 @@
+# Игнорируем временные файлы
+*.log
+*.tmp
+*.bak
+
+# Игнорируем файлы сборки
+bin/
+obj/
+Library/
+Temp/
+
+# Игнорируем системные файлы
+.DS_Store
+Thumbs.db
+
+# Игнорируем IDE (Visual Studio, Rider, VS Code)
+.vscode/
+.idea/
+*.suo
+*.user
+*.sln.cache
+
