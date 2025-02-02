@@ -13,4 +13,12 @@ public class Card : MonoBehaviour
         frontSide.sprite = data.cardFront;
         backSide.sprite = data.cardBack;
     }
+    public CardData GetCard()
+    {
+        return cardData;
+    }
+    public void BackSiceOff()
+    {
+        backSide.gameObject.SetActive(false);
+    }
 }

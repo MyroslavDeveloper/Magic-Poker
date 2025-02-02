@@ -6,41 +6,41 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Player player;
     [SerializeField] private Player playerAI;
     [SerializeField] private DeckOfCard deckOfCard;
+    [SerializeField] private Transform playerHand;
+    [SerializeField] private Transform AIHand;
     [SerializeField] private Board board;
 
     private void Start()
     {
-        FeelStartHand(player);
-        FeelStartHand(playerAI);
+        FeelStartHand(player,playerHand);
+        FeelStartHand(playerAI,AIHand);
         FeelFlop(board);
     }
-    public void FeelStartHand(Player player)
+    public void FeelStartHand(Player player,Transform parent)
     {
-        if (deckOfCard.Deck.Count < 2)
-        {
-            Debug.LogWarning("Недостаточно карт в колоде!");
-            return;
-        }
-
-        // Берём последние две карты через LINQ
+      
         Card[] hand = deckOfCard.Deck.TakeLast(2).ToArray();
-
-        // Передаём карты игроку
         player.SetStartHand(hand[0], hand[1]);
-
-        // Удаляем их из колоды
+        ChangeParent(hand[0],parent);
+        ChangeParent(hand[1],parent);    
         deckOfCard.Deck.RemoveRange(deckOfCard.Deck.Count - 2, 2);
-
-        Debug.Log($"Игрок получил: {hand[0].name} и {hand[1].name}");
+    }
+    private void ChangeParent(Card card,Transform parent)
+    {
+        card.transform.SetParent(parent);
+        card.BackSiceOff();
     }
     public void FeelFlop(Board board)
     {
         Card[] hand = deckOfCard.Deck.TakeLast(3).ToArray();
-
-        board.SetFloap(hand);
-
+        board.SetFlop(hand);
+         ChangeParent(hand[0],board.transform);
+        ChangeParent(hand[1],board.transform);
+          ChangeParent(hand[2],board.transform);
         deckOfCard.Deck.RemoveRange(deckOfCard.Deck.Count - 3, 3);
-
-        Debug.Log($"Игрок получил: {hand[0].name} и {hand[1].name}");
+    }
+     public (Player human, Player ai) GetPlayers()
+    {
+        return (player, playerAI);
     }
 }
