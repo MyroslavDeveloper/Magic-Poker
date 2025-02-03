@@ -3,18 +3,17 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewPokerCard", menuName = "Poker/Card Data")]
 public class CardData : ScriptableObject
 {
-    public enum Suit { Hearts, Diamonds, Clubs, Spades }  // Масти карт
-    public enum Rank { Two = 2, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, Ace }  // Ранги
+    public enum Suit { Hearts, Diamonds, Clubs, Spades }
+    public enum Rank { Two = 2, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, Ace }
 
     [Header("Card Information")]
-    public Suit suit;    // Масть карты
-    public Rank rank;    // Значение карты
+    public Suit suit;
+    public Rank rank;
 
     [Header("Card Visuals")]
-    public Sprite cardFront;  // Спрайт лицевой стороны карты
-    public Sprite cardBack;   // Спрайт рубашки карты
+    public Sprite cardFront;
+    public Sprite cardBack;
 
-    // Метод для получения названия карты
     public string GetCardName()
     {
         return $"{rank} of {suit}";

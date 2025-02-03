@@ -3,35 +3,28 @@ using UnityEngine;
 
 public class DeckOfCard : MonoBehaviour
 {
-    [SerializeField] private List<Card> deck = new List<Card>(); // Колода карт
-    [SerializeField] private List<CardData> cardDatas; // Данные карт (ScriptableObject)
-    [SerializeField] private GameObject cardPrefab; // Префаб карты
+    private List<Card> deck = new List<Card>();
+    [SerializeField] private List<CardData> cardDatas;
+    [SerializeField] private GameObject cardPrefab;
 
     public List<Card> Deck => deck;
 
     private void Awake()
     {
         FillDeckOfCards();
-        ShuffleDeck();
-    }
-    public List<Card> GetDeck()
-    {
-        return deck;
+        deck.Shuffle();
     }
     private void FillDeckOfCards()
     {
-        deck.Clear(); // Очищаем перед заполнением
+        deck.Clear();
 
         foreach (var cardData in cardDatas)
         {
-            GameObject cardObject = Instantiate(cardPrefab, transform); // Создаём объект карты
-            Card card = cardObject.GetComponent<Card>(); // Получаем компонент Card
-            card.SetCardData(cardData); // Применяем данные карты
-            deck.Add(card); // Добавляем карту в колоду
+            GameObject cardObject = Instantiate(cardPrefab, transform);
+            Card card = cardObject.GetComponent<Card>();
+            card.SetCardData(cardData);
+            deck.Add(card);
         }
     }
-    private void ShuffleDeck()
-{
-    deck.Shuffle();
-}
+
 }

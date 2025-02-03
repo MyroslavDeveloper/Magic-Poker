@@ -2,17 +2,27 @@ using UnityEngine;
 
 public class Board : MonoBehaviour
 {
-    [SerializeField] private Card[] flop = new Card[3];
+  private Card[] flopCards = new Card[3];
+  private Card turnCard;
+  private Card riverCard;
 
-    public void SetFlop(Card[] cards)
+  public void SetFlop(Card[] cards)
+  {
+    for (var i = 0; i < flopCards.Length; i++)
     {
-      flop[0] = cards[0];
-      flop[1] = cards[1];
-      flop[2] = cards[2];
+      flopCards[i] = cards[i];
     }
-
-    public Card[] GetFlop()
-    {
-        return flop;
-    }
+  }
+  public void SetTurn(Card card)
+  {
+    turnCard = card;
+  }
+  public void SetRiver(Card card)
+  {
+    riverCard = card;
+  }
+  public Card[] GetFlop()
+  {
+    return flopCards;
+  }
 }

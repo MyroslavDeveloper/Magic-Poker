@@ -2,12 +2,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-  [SerializeField] Card[] startHand = new Card[2];
+  Card[] startHand = new Card[2];
 
-  public void SetStartHand(Card card1,Card card2)
+  public void SetStartHand(Card[] cards)
   {
-    startHand[0] = card1;
-    startHand[1] = card2;
+    for (var i = 0; i < startHand.Length; i++)
+    {
+      startHand[i] = cards[i];
+    }
   }
 
   public Card[] GetStartHand()

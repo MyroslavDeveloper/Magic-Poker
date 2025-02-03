@@ -1,5 +1,7 @@
 using UnityEngine;
-using System.Linq; // Для работы с LINQ
+using System.Linq;
+using System;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,37 +12,50 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform AIHand;
     [SerializeField] private Board board;
 
+    private const int flopCountCards = 3;
+    private const int StartHandCountCards = 2;
+    private const int TurnOrRiverCountCards = 1;
+
     private void Start()
     {
-        FeelStartHand(player,playerHand);
-        FeelStartHand(playerAI,AIHand);
+        FeelStartHand(player, playerHand);
+        FeelStartHand(playerAI, AIHand);
         FeelFlop(board);
+        FeelTurn(board);
+        FeelRiver(board);
     }
-    public void FeelStartHand(Player player,Transform parent)
+    private void ChangeParentForCard(IEnumerable<Card> cards, Transform parent)
     {
-      
-        Card[] hand = deckOfCard.Deck.TakeLast(2).ToArray();
-        player.SetStartHand(hand[0], hand[1]);
-        ChangeParent(hand[0],parent);
-        ChangeParent(hand[1],parent);    
-        deckOfCard.Deck.RemoveRange(deckOfCard.Deck.Count - 2, 2);
+        foreach (var card in cards)
+        {
+            card.transform.SetParent(parent);
+            card.BackSiceOff();
+        }
     }
-    private void ChangeParent(Card card,Transform parent)
+    public void DealCards<T>(T target, int count, Transform parent, System.Action<T, Card[]> setMethod)
     {
-        card.transform.SetParent(parent);
-        card.BackSiceOff();
+        Card[] hand = deckOfCard.Deck.TakeLast(count).ToArray();
+        setMethod(target, hand);
+        ChangeParentForCard(hand, parent);
+        deckOfCard.Deck.RemoveRange(deckOfCard.Deck.Count - count, count);
     }
+    public void FeelStartHand(Player player, Transform parent)
+    {
+        DealCards(player, StartHandCountCards, parent, (p, h) => p.SetStartHand(h));
+    }
+
     public void FeelFlop(Board board)
     {
-        Card[] hand = deckOfCard.Deck.TakeLast(3).ToArray();
-        board.SetFlop(hand);
-         ChangeParent(hand[0],board.transform);
-        ChangeParent(hand[1],board.transform);
-          ChangeParent(hand[2],board.transform);
-        deckOfCard.Deck.RemoveRange(deckOfCard.Deck.Count - 3, 3);
+        DealCards(board, flopCountCards, board.transform, (b, h) => b.SetFlop(h));
     }
-     public (Player human, Player ai) GetPlayers()
+
+    public void FeelTurn(Board board)
     {
-        return (player, playerAI);
+        DealCards(board, TurnOrRiverCountCards, board.transform, (b, h) => b.SetTurn(h[0]));
+    }
+
+    public void FeelRiver(Board board)
+    {
+        DealCards(board, TurnOrRiverCountCards, board.transform, (b, h) => b.SetRiver(h[0]));
     }
 }
