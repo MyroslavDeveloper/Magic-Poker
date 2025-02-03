@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,6 @@ public class DeckOfCard : MonoBehaviour
     [SerializeField] private GameObject cardPrefab;
 
     public List<Card> Deck => deck;
-
     private void Awake()
     {
         FillDeckOfCards();
