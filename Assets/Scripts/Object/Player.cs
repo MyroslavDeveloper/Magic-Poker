@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -18,16 +19,14 @@ public class Player : MonoBehaviour
     return startHand;
   }
 
-  public bool BetChips(int amount)
+  public void BetChips(int amount)
   {
     if (amount > chips)
     {
       Debug.LogWarning($"{gameObject.name}: Недостаточно фишек!");
-      return false;
+      return;
     }
-
     chips -= amount;
-    return true;
   }
 
   public void AddChips(int amount)

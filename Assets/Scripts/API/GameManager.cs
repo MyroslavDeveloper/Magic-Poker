@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Player player;
-    [SerializeField] private Player playerAI;
+    [SerializeField] private AIPlayer aIplayer;
     [SerializeField] private DeckOfCard deckOfCard;
     [SerializeField] private Transform playerHand;
     [SerializeField] private Transform AIHand;
@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         FeelStartHand(player, playerHand);
-        FeelStartHand(playerAI, AIHand);
+        FeelStartHand(aIplayer, AIHand);
         FeelFlop(board);
         FeelTurn(board);
         FeelRiver(board);
@@ -40,6 +40,10 @@ public class GameManager : MonoBehaviour
         deckOfCard.Deck.RemoveRange(deckOfCard.Deck.Count - count, count);
     }
     public void FeelStartHand(Player player, Transform parent)
+    {
+        DealCards(player, StartHandCountCards, parent, (p, h) => p.SetStartHand(h));
+    }
+    public void FeelStartHand(AIPlayer AIplayer, Transform parent)
     {
         DealCards(player, StartHandCountCards, parent, (p, h) => p.SetStartHand(h));
     }
