@@ -22,6 +22,9 @@ public class GamePresenter : MonoBehaviour
     private void OnDestroy()
     {
         foreach (var presenter in presenters)
+        {
             presenter.Dispose();
+        }
+        presenters.Clear();
     }
 }

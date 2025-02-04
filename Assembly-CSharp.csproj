@@ -112,6 +112,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
     <Compile Include="Assets\Scripts\Presenter\AIPlayerPresenter.cs" />
     <Compile Include="Assets\Scripts\Object\AIPlayer.cs" />
+    <Compile Include="Assets\Scripts\View\IPlayerView.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
     <Compile Include="Assets\Scripts\Object\Player.cs" />
   </ItemGroup>

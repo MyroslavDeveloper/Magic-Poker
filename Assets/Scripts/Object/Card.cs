@@ -5,24 +5,17 @@ public class Card : MonoBehaviour
 {
     [SerializeField] private Image frontSide;
     [SerializeField] private Image backSide;
-    private CardData cardData;
+    public CardData CardData { get; private set; }
 
     public void SetCardData(CardData data)
     {
-        cardData = data;
+        CardData = data;
         frontSide.sprite = data.cardFront;
         backSide.sprite = data.cardBack;
     }
-    public CardData GetCard()
+
+    public void SetBackSide(bool isActive)
     {
-        return cardData;
-    }
-    public void BackSiceOff()
-    {
-        backSide.gameObject.SetActive(false);
-    }
-    public void BackSiceOn()
-    {
-        backSide.gameObject.SetActive(true);
+        backSide.gameObject.SetActive(isActive);
     }
 }

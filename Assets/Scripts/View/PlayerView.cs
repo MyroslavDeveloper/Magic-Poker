@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerView : MonoBehaviour
+public class PlayerView : MonoBehaviour, IPlayerView
 {
     [SerializeField] private TMP_Text chipsText;
     [SerializeField] private TMP_InputField betInputField;

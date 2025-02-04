@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class BasePlayerPresenter<TPlayer, TView> : IDisposable
     where TPlayer : BasePlayer
-    where TView : MonoBehaviour
+    where TView : MonoBehaviour, IPlayerView
 {
     protected TPlayer player;
     protected TView view;
@@ -21,8 +21,7 @@ public abstract class BasePlayerPresenter<TPlayer, TView> : IDisposable
 
     protected void UpdateView()
     {
-        if (view is PlayerView playerView) playerView.UpdateChipsDisplay(player.GetChips());
-        else if (view is AIPlayerView aiPlayerView) aiPlayerView.UpdateChipsDisplay(player.GetChips());
+        view.UpdateChipsDisplay(player.GetChips()); // 🔹 Теперь нет `if-else`!
     }
 
     public virtual void Dispose()

@@ -8,7 +8,7 @@ public class AIPlayer : BasePlayer
 
         foreach (var card in GetStartHand())
         {
-            card.BackSiceOn();
+            card.SetBackSide(true);
         }
     }
 }

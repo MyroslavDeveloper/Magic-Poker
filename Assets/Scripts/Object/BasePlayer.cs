@@ -24,10 +24,7 @@ public abstract class BasePlayer : MonoBehaviour
     }
     public void ClearStartHand()
     {
-        for (int i = 0; i < startHand.Length; i++)
-        {
-            startHand[i] = null;
-        }
+        Array.Clear(startHand, 0, startHand.Length);
     }
     public void AddChips(int amount) => chips += amount;
 

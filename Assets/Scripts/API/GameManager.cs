@@ -38,12 +38,22 @@ public class GameManager : MonoBehaviour
         players = new List<BasePlayer> { player, aIplayer };
         blindsManager = new BlindsManager(players, 50, 100);
         blindsManager.AssignBlinds();
+        StartNewRound();
+    }
+    public void NextRound()
+    {
+        ReturnAllCards();
+        NextDeal?.Invoke();
+        StartNewRound();
+    }
+    private void StartNewRound()
+    {
         DealStartingHands();
         FeelFlop(board);
         FeelTurn(board);
         FeelRiver(board);
     }
-    public void NextRound()
+    private void ReturnAllCards()
     {
         ReturnCardsChangeParentForCard(player.GetStartHand(), deckOfCard.transform);
         ReturnCardsChangeParentForCard(aIplayer.GetStartHand(), deckOfCard.transform);
@@ -51,11 +61,6 @@ public class GameManager : MonoBehaviour
         deckOfCard.AddCards(player.GetStartHand());
         deckOfCard.AddCards(aIplayer.GetStartHand());
         deckOfCard.AddCards(board.ReturnCards());
-        NextDeal?.Invoke();
-        DealStartingHands();
-        FeelFlop(board);
-        FeelTurn(board);
-        FeelRiver(board);
     }
     private void DealStartingHands()
     {
@@ -76,7 +81,7 @@ public class GameManager : MonoBehaviour
         {
             card.transform.SetParent(parent);
             card.transform.position = Vector2.zero;
-            card.BackSiceOff();
+            card.SetBackSide(false);
         }
     }
 
@@ -106,5 +111,9 @@ public class GameManager : MonoBehaviour
     public void FeelRiver(Board board)
     {
         DealCards(board, TurnOrRiverCountCards, board.transform, (b, h) => b.SetRiver(h[0]));
+    }
+    private void OnDestroy()
+    {
+        blindsManager?.Dispose();
     }
 }

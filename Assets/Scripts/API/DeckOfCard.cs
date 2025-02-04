@@ -30,14 +30,9 @@ public class DeckOfCard : MonoBehaviour
     private void Awake()
     {
         Dealcards();
+        ShuffleDeck();
     }
-    public void AddCards(IEnumerable<Card> cards)
-    {
-        foreach (var card in cards)
-        {
-            deck.Add(card);
-        }
-    }
+    public void AddCards(IEnumerable<Card> cards) => deck.AddRange(cards);
     private void FillDeckOfCards()
     {
         deck.Clear();
@@ -54,7 +49,6 @@ public class DeckOfCard : MonoBehaviour
     public void Dealcards()
     {
         FillDeckOfCards();
-        deck.Shuffle();
     }
     public void ShuffleDeck()
     {

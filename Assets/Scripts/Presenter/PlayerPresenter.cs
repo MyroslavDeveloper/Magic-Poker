@@ -6,10 +6,11 @@ public class PlayerPresenter : BasePlayerPresenter<Player, PlayerView>
     public PlayerPresenter(Player player, PlayerView view) : base(player, view)
     {
         view.OnBetPressed += BetChips;
+
     }
     public override void Dispose()
     {
-        view.OnBetPressed -= BetChips; // ✅ Отписываемся, чтобы избежать утечки памяти
+        view.OnBetPressed -= BetChips;
     }
     public void BetChips(int amount)
     {
