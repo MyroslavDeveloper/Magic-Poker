@@ -6,7 +6,7 @@ public abstract class BasePlayer : MonoBehaviour
     [SerializeField] private Card[] startHand = new Card[2];
     [SerializeField] private int chips;
 
-    public void SetStartHand(Card[] cards)
+    public virtual void SetStartHand(Card[] cards)
     {
         Array.Copy(cards, startHand, cards.Length);
     }
@@ -22,7 +22,13 @@ public abstract class BasePlayer : MonoBehaviour
         }
         chips -= amount;
     }
-
+    public void ClearStartHand()
+    {
+        for (int i = 0; i < startHand.Length; i++)
+        {
+            startHand[i] = null;
+        }
+    }
     public void AddChips(int amount) => chips += amount;
 
     public int GetChips() => chips;

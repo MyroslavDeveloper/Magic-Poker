@@ -13,6 +13,10 @@ public abstract class BasePlayerPresenter<TPlayer, TView> : IDisposable
         this.player = player;
         this.view = view;
         UpdateView();
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.NextDeal += UpdateView;
+        }
     }
 
     protected void UpdateView()
@@ -21,5 +25,11 @@ public abstract class BasePlayerPresenter<TPlayer, TView> : IDisposable
         else if (view is AIPlayerView aiPlayerView) aiPlayerView.UpdateChipsDisplay(player.GetChips());
     }
 
-    public virtual void Dispose() { }
+    public virtual void Dispose()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.NextDeal -= UpdateView;
+        }
+    }
 }

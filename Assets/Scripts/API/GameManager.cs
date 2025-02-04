@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
+    public event Action NextDeal;
     [SerializeField] private Player player;
     [SerializeField] private AIPlayer aIplayer;
     [SerializeField] private DeckOfCard deckOfCard;
@@ -16,22 +18,68 @@ public class GameManager : MonoBehaviour
     private const int StartHandCountCards = 2;
     private const int TurnOrRiverCountCards = 1;
 
+    private BlindsManager blindsManager;
+    private List<BasePlayer> players;
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+        DontDestroyOnLoad(gameObject);
+    }
     private void Start()
     {
-        FeelStartHand(player, playerHand);
-        FeelStartHand(aIplayer, AIHand);
+        players = new List<BasePlayer> { player, aIplayer };
+        blindsManager = new BlindsManager(players, 50, 100);
+        blindsManager.AssignBlinds();
+        DealStartingHands();
         FeelFlop(board);
         FeelTurn(board);
         FeelRiver(board);
     }
+    public void NextRound()
+    {
+        ReturnCardsChangeParentForCard(player.GetStartHand(), deckOfCard.transform);
+        ReturnCardsChangeParentForCard(aIplayer.GetStartHand(), deckOfCard.transform);
+        ReturnCardsChangeParentForCard(board.ReturnCards(), deckOfCard.transform);
+        deckOfCard.AddCards(player.GetStartHand());
+        deckOfCard.AddCards(aIplayer.GetStartHand());
+        deckOfCard.AddCards(board.ReturnCards());
+        NextDeal?.Invoke();
+        DealStartingHands();
+        FeelFlop(board);
+        FeelTurn(board);
+        FeelRiver(board);
+    }
+    private void DealStartingHands()
+    {
+        FeelStartHand(player, playerHand);
+        FeelStartHand(aIplayer, AIHand);
+    }
+
     private void ChangeParentForCard(IEnumerable<Card> cards, Transform parent)
     {
         foreach (var card in cards)
         {
             card.transform.SetParent(parent);
+        }
+    }
+    private void ReturnCardsChangeParentForCard(IEnumerable<Card> cards, Transform parent)
+    {
+        foreach (var card in cards)
+        {
+            card.transform.SetParent(parent);
+            card.transform.position = Vector2.zero;
             card.BackSiceOff();
         }
     }
+
     public void DealCards<T>(T target, int count, Transform parent, System.Action<T, Card[]> setMethod)
     {
         Card[] hand = deckOfCard.Deck.TakeLast(count).ToArray();
@@ -39,10 +87,12 @@ public class GameManager : MonoBehaviour
         ChangeParentForCard(hand, parent);
         deckOfCard.Deck.RemoveRange(deckOfCard.Deck.Count - count, count);
     }
+
     public void FeelStartHand<T>(T player, Transform parent) where T : BasePlayer
     {
         DealCards(player, StartHandCountCards, parent, (p, h) => p.SetStartHand(h));
     }
+
     public void FeelFlop(Board board)
     {
         DealCards(board, flopCountCards, board.transform, (b, h) => b.SetFlop(h));

@@ -21,4 +21,8 @@ public class Card : MonoBehaviour
     {
         backSide.gameObject.SetActive(false);
     }
+    public void BackSiceOn()
+    {
+        backSide.gameObject.SetActive(true);
+    }
 }

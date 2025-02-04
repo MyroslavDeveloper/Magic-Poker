@@ -538,6 +538,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d57d7398837c3df47a5ee30a935331c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startHand:
+  - {fileID: 0}
+  - {fileID: 0}
   chips: 1000
 --- !u!114 &558011098
 MonoBehaviour:
@@ -610,7 +613,7 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 150, y: 250}
+  m_CellSize: {x: 100, y: 150}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -1449,8 +1452,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 558011097}
   playerView: {fileID: 558011098}
-  aIPlayer: {fileID: 1052828456}
-  aIPlayerView: {fileID: 1052828455}
+  aiPlayer: {fileID: 1052828456}
+  aiPlayerView: {fileID: 1052828455}
 --- !u!1 &1036970771
 GameObject:
   m_ObjectHideFlags: 0
@@ -1635,7 +1638,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7f0fbb7d2e52e745b3958360fd97b8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chips: 1000
+  startHand:
+  - {fileID: 0}
+  - {fileID: 0}
+  chips: 222
 --- !u!1 &1251637395
 GameObject:
   m_ObjectHideFlags: 0
@@ -1849,7 +1855,7 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 150, y: 250}
+  m_CellSize: {x: 100, y: 150}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -2434,7 +2440,7 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 150, y: 250}
+  m_CellSize: {x: 100, y: 150}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
