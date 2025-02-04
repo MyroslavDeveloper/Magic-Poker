@@ -39,15 +39,10 @@ public class GameManager : MonoBehaviour
         ChangeParentForCard(hand, parent);
         deckOfCard.Deck.RemoveRange(deckOfCard.Deck.Count - count, count);
     }
-    public void FeelStartHand(Player player, Transform parent)
+    public void FeelStartHand<T>(T player, Transform parent) where T : BasePlayer
     {
         DealCards(player, StartHandCountCards, parent, (p, h) => p.SetStartHand(h));
     }
-    public void FeelStartHand(AIPlayer AIplayer, Transform parent)
-    {
-        DealCards(player, StartHandCountCards, parent, (p, h) => p.SetStartHand(h));
-    }
-
     public void FeelFlop(Board board)
     {
         DealCards(board, flopCountCards, board.transform, (b, h) => b.SetFlop(h));

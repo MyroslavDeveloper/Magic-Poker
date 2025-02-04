@@ -1,30 +1,20 @@
 using System;
 using UnityEngine;
 
-public class PlayerPresenter : IDisposable
+public class PlayerPresenter : BasePlayerPresenter<Player, PlayerView>
 {
-    private Player player;
-    private PlayerView playerView;
-
-    public PlayerPresenter(Player player, PlayerView playerView)
+    public PlayerPresenter(Player player, PlayerView view) : base(player, view)
     {
-        this.player = player;
-        this.playerView = playerView;
-        this.playerView.OnBetPressed += BetChips;
-        UpdateView();
+        view.OnBetPressed += BetChips;
     }
-
-    public void Dispose()
+    public override void Dispose()
     {
-        this.playerView.OnBetPressed -= BetChips;
+        view.OnBetPressed -= BetChips; // ✅ Отписываемся, чтобы избежать утечки памяти
     }
     public void BetChips(int amount)
     {
         player.BetChips(amount);
         UpdateView();
     }
-    private void UpdateView()
-    {
-        playerView.UpdateChipsDisplay(player.GetChips());
-    }
 }
+

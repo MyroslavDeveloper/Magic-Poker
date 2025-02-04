@@ -1,20 +1,27 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GamePresenter : MonoBehaviour
 {
     [SerializeField] private Player player;
     [SerializeField] private PlayerView playerView;
-    [SerializeField] private AIPlayer aIPlayer;
-    [SerializeField] private AIPlayerView aIPlayerView;
+    [SerializeField] private AIPlayer aiPlayer;
+    [SerializeField] private AIPlayerView aiPlayerView;
 
+    private List<IDisposable> presenters = new();
 
-    private void Start()
-    {
-        Initialize();
-    }
+    private void Start() => Initialize();
+
     public void Initialize()
     {
-        PlayerPresenter playerPresenter = new PlayerPresenter(player, playerView);
-        AIPlayerPresenter aIPlayerPresenter = new AIPlayerPresenter(aIPlayerView, aIPlayer);
+        presenters.Add(new PlayerPresenter(player, playerView));
+        presenters.Add(new AIPlayerPresenter(aiPlayer, aiPlayerView));
+    }
+
+    private void OnDestroy()
+    {
+        foreach (var presenter in presenters)
+            presenter.Dispose();
     }
 }
