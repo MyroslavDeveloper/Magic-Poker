@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerPresenter : BasePlayerPresenter<Player, PlayerView>
 {
-    public PlayerPresenter(Player player, PlayerView view) : base(player, view)
+    public PlayerPresenter(Player player, PlayerView view, BlindsManager blindsManager) : base(player, view, blindsManager)
     {
         view.OnBetPressed += BetChips;
 

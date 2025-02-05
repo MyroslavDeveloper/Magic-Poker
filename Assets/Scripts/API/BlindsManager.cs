@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class BlindsManager : IDisposable
 {
-
+    public event Action OnBlinding;
     private List<BasePlayer> players;
     private int currentSmallBlindIndex = 0;
     private int currentBigBlindIndex = 1;
     private int smallBlindAmount;
     private int bigBlindAmount;
-
-    public event Action<BasePlayer, BasePlayer> OnBlindsUpdated;
-
     public void Dispose()
     {
         if (GameManager.Instance != null)
@@ -47,7 +44,7 @@ public class BlindsManager : IDisposable
         int bigBlindBet = Math.Min(bigBlindPlayer.GetChips(), bigBlindAmount);
         bigBlindPlayer.BetChips(bigBlindBet);
         Debug.Log($"{bigBlindPlayer.name} поставил {bigBlindBet} фишек (большой блайнд)");
-        OnBlindsUpdated?.Invoke(smallBlindPlayer, bigBlindPlayer);
+        OnBlinding?.Invoke();
         MoveBlinds();
     }
 

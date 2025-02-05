@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform playerHand;
     [SerializeField] private Transform AIHand;
     [SerializeField] private Board board;
+    [SerializeField] private GamePresenter gamePresenter;
 
     private const int flopCountCards = 3;
     private const int StartHandCountCards = 2;
@@ -35,10 +36,20 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+
+        StartNewRound();
         players = new List<BasePlayer> { player, aIplayer };
         blindsManager = new BlindsManager(players, 50, 100);
+        gamePresenter.Initialize();
         blindsManager.AssignBlinds();
-        StartNewRound();
+    }
+    public BlindsManager GetBlindsManager()
+    {
+        return blindsManager;
+    }
+    public List<BasePlayer> GetAllPlayers()
+    {
+        return players;
     }
     public void NextRound()
     {

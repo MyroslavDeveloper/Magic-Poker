@@ -68,6 +68,8 @@
     <Compile Include="Assets\Scripts\API\GameManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
+    <Compile Include="Assets\Scripts\Presenter\BankPresenter.cs" />
+    <Compile Include="Assets\Scripts\Object\Bank.cs" />
     <Compile Include="Assets\Scripts\API\BlindsManager.cs" />
     <Compile Include="Assets\Scripts\Date\CardData.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
@@ -87,6 +89,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\Scripts\Presenter\GamePresenter.cs" />
+    <Compile Include="Assets\Scripts\View\IChipsView.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
@@ -112,7 +115,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
     <Compile Include="Assets\Scripts\Presenter\AIPlayerPresenter.cs" />
     <Compile Include="Assets\Scripts\Object\AIPlayer.cs" />
-    <Compile Include="Assets\Scripts\View\IPlayerView.cs" />
+    <Compile Include="Assets\Scripts\View\BankView.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
     <Compile Include="Assets\Scripts\Object\Player.cs" />
   </ItemGroup>

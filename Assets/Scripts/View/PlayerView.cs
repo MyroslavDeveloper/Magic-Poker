@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerView : MonoBehaviour, IPlayerView
+public class PlayerView : MonoBehaviour, IChipsView
 {
     [SerializeField] private TMP_Text chipsText;
     [SerializeField] private TMP_InputField betInputField;
@@ -22,12 +22,12 @@ public class PlayerView : MonoBehaviour, IPlayerView
         }
         else
         {
-            Debug.LogWarning("Введите корректную сумму ставки!");
+            Debug.LogWarning("Dont Enaf Money!");
         }
     }
 
     public void UpdateChipsDisplay(int chips)
     {
-        chipsText.text = $"Фишки: {chips}";
+        chipsText.text = $"Chips: {chips}";
     }
 }
