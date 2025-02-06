@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     private const int TurnOrRiverCountCards = 1;
 
     private BlindsManager blindsManager;
+    private BlindRules blindRules;
     private List<BasePlayer> players;
     private void Awake()
     {
@@ -39,7 +40,8 @@ public class GameManager : MonoBehaviour
 
         StartNewRound();
         players = new List<BasePlayer> { player, aIplayer };
-        blindsManager = new BlindsManager(players, 50, 100);
+        blindRules = new BlindRules(50, 100);
+        blindsManager = new BlindsManager(players, blindRules);
         gamePresenter.Initialize();
         blindsManager.AssignBlinds();
     }

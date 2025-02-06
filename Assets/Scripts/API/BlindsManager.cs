@@ -8,8 +8,7 @@ public class BlindsManager : IDisposable
     private List<BasePlayer> players;
     private int currentSmallBlindIndex = 0;
     private int currentBigBlindIndex = 1;
-    private int smallBlindAmount;
-    private int bigBlindAmount;
+    private BlindRules blindRules;
     public void Dispose()
     {
         if (GameManager.Instance != null)
@@ -17,11 +16,10 @@ public class BlindsManager : IDisposable
             GameManager.Instance.NextDeal -= AssignBlinds;
         }
     }
-    public BlindsManager(List<BasePlayer> players, int smallBlindAmount, int bigBlindAmount)
+    public BlindsManager(List<BasePlayer> players, BlindRules blindRules)
     {
         this.players = players;
-        this.smallBlindAmount = smallBlindAmount;
-        this.bigBlindAmount = bigBlindAmount;
+        this.blindRules = blindRules;
         if (GameManager.Instance != null)
         {
             GameManager.Instance.NextDeal += AssignBlinds;
@@ -36,12 +34,12 @@ public class BlindsManager : IDisposable
         BasePlayer bigBlindPlayer = players[currentBigBlindIndex];
 
 
-        int smallBlindBet = Math.Min(smallBlindPlayer.GetChips(), smallBlindAmount);
+        int smallBlindBet = Math.Min(smallBlindPlayer.GetChips(), blindRules.SmallBlind);
         smallBlindPlayer.BetChips(smallBlindBet);
         Debug.Log($"{smallBlindPlayer.name} поставил {smallBlindBet} фишек (малый блайнд)");
 
 
-        int bigBlindBet = Math.Min(bigBlindPlayer.GetChips(), bigBlindAmount);
+        int bigBlindBet = Math.Min(bigBlindPlayer.GetChips(), blindRules.BigBlind);
         bigBlindPlayer.BetChips(bigBlindBet);
         Debug.Log($"{bigBlindPlayer.name} поставил {bigBlindBet} фишек (большой блайнд)");
         OnBlinding?.Invoke();
