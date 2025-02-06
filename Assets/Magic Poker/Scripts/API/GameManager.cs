@@ -71,24 +71,7 @@ public class GameManager : MonoBehaviour
         feelingBoard.FeelTurn(board);
         feelingBoard.FeelRiver(board);
     }
-    // private void ReturnAllCards()
-    // {
-    //     ReturnCardsChangeParentForCard(player.GetStartHand(), deckOfCard.transform);
-    //     ReturnCardsChangeParentForCard(aIplayer.GetStartHand(), deckOfCard.transform);
-    //     ReturnCardsChangeParentForCard(board.ReturnCards(), deckOfCard.transform);
-    //     deckOfCard.AddCards(player.GetStartHand());
-    //     deckOfCard.AddCards(aIplayer.GetStartHand());
-    //     deckOfCard.AddCards(board.ReturnCards());
-    // }
-    // private void ReturnCardsChangeParentForCard(IEnumerable<Card> cards, Transform parent)
-    // {
-    //     foreach (var card in cards)
-    //     {
-    //         card.transform.SetParent(parent);
-    //         card.transform.position = Vector2.zero;
-    //         card.SetBackSide(false);
-    //     }
-    // }
+
     private void OnDestroy()
     {
         blindsManager?.Dispose();
