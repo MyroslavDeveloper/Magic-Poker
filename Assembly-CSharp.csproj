@@ -72,6 +72,7 @@
     <Compile Include="Assets\Scripts\Object\Bank.cs" />
     <Compile Include="Assets\Scripts\API\BlindsManager.cs" />
     <Compile Include="Assets\Scripts\Date\CardData.cs" />
+    <Compile Include="Assets\Scripts\API\FeelingBoard.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\Scripts\View\AIPlayerView.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
@@ -117,6 +118,7 @@
     <Compile Include="Assets\Scripts\Presenter\AIPlayerPresenter.cs" />
     <Compile Include="Assets\Scripts\Object\AIPlayer.cs" />
     <Compile Include="Assets\Scripts\View\BankView.cs" />
+    <Compile Include="Assets\Scripts\API\DealingCards.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
     <Compile Include="Assets\Scripts\Object\Player.cs" />
   </ItemGroup>

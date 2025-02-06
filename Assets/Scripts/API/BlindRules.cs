@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BlindRules : MonoBehaviour
+public class BlindRules
 {
     private int smallBlind;
     private int bigBlind;
