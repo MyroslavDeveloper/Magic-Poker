@@ -16,7 +16,7 @@ public class DeckOfCard : MonoBehaviour
     {
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.NextDeal += ShuffleDeck;
+            GameManager.Instance.GetGameFlowManager().NextDeal += ShuffleDeck;
         }
     }
 
@@ -24,7 +24,7 @@ public class DeckOfCard : MonoBehaviour
     {
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.NextDeal -= ShuffleDeck;
+            GameManager.Instance.GetGameFlowManager().NextDeal -= ShuffleDeck;
         }
     }
     private void Awake()

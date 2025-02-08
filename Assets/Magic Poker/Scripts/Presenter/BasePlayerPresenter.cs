@@ -17,7 +17,7 @@ public abstract class BasePlayerPresenter<TPlayer, TView> : IDisposable
         UpdateView();
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.NextDeal += UpdateView;
+            GameManager.Instance.GetGameFlowManager().NextDeal += UpdateView;
         }
         blindsManager.OnBlinding += UpdateView;
     }
@@ -31,7 +31,7 @@ public abstract class BasePlayerPresenter<TPlayer, TView> : IDisposable
     {
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.NextDeal -= UpdateView;
+            GameManager.Instance.GetGameFlowManager().NextDeal -= UpdateView;
         }
         blindsManager.OnBlinding -= UpdateView;
     }

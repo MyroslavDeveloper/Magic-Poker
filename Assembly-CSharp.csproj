@@ -92,6 +92,7 @@
     <Compile Include="Assets\Magic Poker\Scripts\Presenter\GamePresenter.cs" />
     <Compile Include="Assets\Magic Poker\Scripts\Object\Card.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
+    <Compile Include="Assets\Magic Poker\Scripts\API\GameFlowManager.cs" />
     <Compile Include="Assets\Magic Poker\Scripts\Presenter\BankPresenter.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />

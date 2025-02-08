@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Board board;
     [SerializeField] private GamePresenter gamePresenter;
 
+    [SerializeField] private GameFlowManager gameFlowManager;
     private BlindsManager blindsManager;
     private FeelingHand feelingHand;
     private BlindRules blindRules;
@@ -32,18 +33,15 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+        Initialize();
         DontDestroyOnLoad(gameObject);
     }
-    private void Start()
-    {
-        Initialize();
-        blindsManager.AssignBlinds();
-        StartNewRound();
-    }
+
     private void Initialize()
     {
-        player = new();
-        aIplayer = new();
+
+        player = new Player();
+        aIplayer = new AIPlayer();
         players = new List<BasePlayer> { player, aIplayer };
         blindRules = new BlindRules(50, 100);
         feelingHand = new FeelingHand(player, aIplayer, deckOfCard, playerHand, AIHand);
@@ -51,6 +49,22 @@ public class GameManager : MonoBehaviour
         blindsManager = new BlindsManager(players, blindRules);
         returnCards = new ReturnCards(player, aIplayer, deckOfCard, board);
         gamePresenter.Initialize();
+    }
+    public GameFlowManager GetGameFlowManager()
+    {
+        return gameFlowManager;
+    }
+    public FeelingHand GetFeelingHand()
+    {
+        return feelingHand;
+    }
+    public FeelingBoard GetFeelingBoard()
+    {
+        return feelingBoard;
+    }
+    public ReturnCards GetReturnCards()
+    {
+        return returnCards;
     }
     public Player GetPlayer()
     {
@@ -68,20 +82,6 @@ public class GameManager : MonoBehaviour
     {
         return players;
     }
-    public void NextRound()
-    {
-        returnCards.ReturnAllCards();
-        NextDeal?.Invoke();
-        StartNewRound();
-    }
-    private void StartNewRound()
-    {
-        feelingHand.DealStartingHands();
-        feelingBoard.FeelFlop();
-        feelingBoard.FeelTurn();
-        feelingBoard.FeelRiver();
-    }
-
     private void OnDestroy()
     {
         blindsManager?.Dispose();

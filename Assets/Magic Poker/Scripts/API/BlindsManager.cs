@@ -13,7 +13,7 @@ public class BlindsManager : IDisposable
     {
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.NextDeal -= AssignBlinds;
+            GameManager.Instance.GetGameFlowManager().NextDeal -= AssignBlinds;
         }
     }
     public BlindsManager(List<BasePlayer> players, BlindRules blindRules)
@@ -22,7 +22,7 @@ public class BlindsManager : IDisposable
         this.blindRules = blindRules;
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.NextDeal += AssignBlinds;
+            GameManager.Instance.GetGameFlowManager().NextDeal += AssignBlinds;
         }
     }
 

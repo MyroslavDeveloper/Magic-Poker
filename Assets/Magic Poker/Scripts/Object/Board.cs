@@ -10,7 +10,7 @@ public class Board : MonoBehaviour
   {
     if (GameManager.Instance != null)
     {
-      GameManager.Instance.NextDeal += ClearBoard;
+      GameManager.Instance.GetGameFlowManager().NextDeal += ClearBoard;
     }
   }
 
@@ -18,7 +18,7 @@ public class Board : MonoBehaviour
   {
     if (GameManager.Instance != null)
     {
-      GameManager.Instance.NextDeal -= ClearBoard;
+      GameManager.Instance.GetGameFlowManager().NextDeal -= ClearBoard;
     }
   }
   public void SetFlop(Card[] cards)
