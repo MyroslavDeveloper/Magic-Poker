@@ -1,15 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Zenject;
 
 public abstract class DealingCards : IChangeParentCard
 {
-    private DeckOfCard deckOfCard;
+    [Inject] private DeckOfCard deckOfCard;
 
-    public DealingCards(DeckOfCard deckOfCard)
-    {
-        this.deckOfCard = deckOfCard;
-    }
+
 
     public void DealCards<T>(T target, int count, Transform parent, System.Action<T, Card[]> setMethod)
     {

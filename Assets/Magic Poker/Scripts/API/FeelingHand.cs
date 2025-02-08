@@ -11,12 +11,12 @@ public class FeelingHand : DealingCards
     private Transform playerHand;
     private Transform AIHand;
 
-    public FeelingHand(Player player, AIPlayer aIplayer, DeckOfCard deckOfCard, Transform playerHand, Transform AIHand)
-    : base(deckOfCard)
+    public FeelingHand(Player player, AIPlayer aIplayer, Transform playerHand, Transform AIHand)
+
     {
         this.player = player;
         this.aIplayer = aIplayer;
-        this.deckOfCard = deckOfCard;
+
         this.playerHand = playerHand;
         this.AIHand = AIHand;
     }

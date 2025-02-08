@@ -6,6 +6,7 @@ public class GameFlowManager : MonoBehaviour
 {
     public event Action NextDeal;
     [Inject] private BlindsManager blindsManager;
+    [Inject] private FeelingBoard feelingBoard;
     private void Start()
     {
         blindsManager.AssignBlinds();
@@ -20,8 +21,8 @@ public class GameFlowManager : MonoBehaviour
     private void StartNewRound()
     {
         GameManager.Instance.GetFeelingHand().DealStartingHands();
-        GameManager.Instance.GetFeelingBoard().FeelFlop();
-        GameManager.Instance.GetFeelingBoard().FeelTurn();
-        GameManager.Instance.GetFeelingBoard().FeelRiver();
+        feelingBoard.FeelFlop();
+        feelingBoard.FeelTurn();
+        feelingBoard.FeelRiver();
     }
 }

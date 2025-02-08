@@ -1,15 +1,11 @@
 using UnityEngine;
+using Zenject;
 
 public class FeelingBoard : DealingCards
 {
     private const int flopCountCards = 3;
     private const int TurnOrRiverCountCards = 1;
-    private Board board;
-    public FeelingBoard(DeckOfCard deckOfCard, Board board)
-    : base(deckOfCard)
-    {
-        this.board = board;
-    }
+    [Inject] private Board board;
     public void FeelFlop()
     {
         DealCards(board, flopCountCards, board.transform, (b, h) => b.SetFlop(h));
