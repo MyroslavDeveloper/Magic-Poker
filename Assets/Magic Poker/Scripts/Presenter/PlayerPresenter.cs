@@ -1,13 +1,10 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerPresenter : BasePlayerPresenter<Player, PlayerView>
 {
-    // public PlayerPresenter(Player player, PlayerView view) : base(player, view)
-    // {
-    //     view.OnBetPressed += BetChips;
 
-    // }
     public override void Dispose()
     {
         base.Dispose();
@@ -18,9 +15,9 @@ public class PlayerPresenter : BasePlayerPresenter<Player, PlayerView>
         player.BetChips(amount);
         UpdateView();
     }
-    protected override void OnInitialize()
+    public override void Initialize()
     {
-        base.OnInitialize();
+        base.Initialize();
         view.OnBetPressed += BetChips;
     }
 }

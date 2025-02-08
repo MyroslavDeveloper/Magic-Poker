@@ -11,14 +11,6 @@ public abstract class BasePlayerPresenter<TPlayer, TView> : IDisposable, IInitia
     [Inject] protected BlindsManager blindsManager;
     [Inject] private GameFlowManager gameFlowManager;
 
-
-    // protected BasePlayerPresenter(TPlayer player, TView view)
-    // {
-    //     this.player = player;
-    //     this.view = view;
-    //     UpdateView();
-    // }
-
     protected void UpdateView()
     {
         view.UpdateChipsDisplay(player.GetChips());
@@ -30,12 +22,12 @@ public abstract class BasePlayerPresenter<TPlayer, TView> : IDisposable, IInitia
         blindsManager.OnBlinding -= UpdateView;
     }
 
-    public void Initialize()
+    public virtual void Initialize()
     {
         blindsManager.OnBlinding += UpdateView;
         gameFlowManager.NextDeal += UpdateView;
         UpdateView();
-        OnInitialize();
+        // OnInitialize();
     }
     protected virtual void OnInitialize()
     {

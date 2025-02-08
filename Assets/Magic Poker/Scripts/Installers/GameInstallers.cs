@@ -7,6 +7,7 @@ public class GameInstallers : MonoInstaller
     [SerializeField] private GameFlowManager gameFlowManager;
     [SerializeField] private DeckOfCard deckOfCard;
     [SerializeField] private Board board;
+    [SerializeField] private BankView bankView;
     [SerializeField] private PlayerView playerView;
     [SerializeField] private AIPlayerView aIPlayerView;
 
@@ -15,9 +16,11 @@ public class GameInstallers : MonoInstaller
     public override void InstallBindings()
     {
         Container.Bind<PlayerView>().FromInstance(playerView);
+        Container.Bind<BankView>().FromInstance(bankView);
         Container.Bind<AIPlayerView>().FromInstance(aIPlayerView);
         Container.Bind<GameFlowManager>().FromInstance(gameFlowManager);
         Container.Bind<IHandTransformProvider>().FromInstance(managerHandsPositions);
+        Container.Bind<IBank>().To<Bank>().AsSingle();
         Container.Bind<DeckOfCard>().FromInstance(deckOfCard);
         Container.Bind<Board>().FromInstance(board);
         Container.BindInterfacesAndSelfTo<Player>().AsSingle();
@@ -27,7 +30,7 @@ public class GameInstallers : MonoInstaller
         Container.BindInterfacesAndSelfTo<FeelingHand>().AsSingle();
         Container.BindInterfacesAndSelfTo<PlayerPresenter>().AsSingle();
         Container.BindInterfacesAndSelfTo<AIPlayerPresenter>().AsSingle();
-
+        Container.BindInterfacesAndSelfTo<BankPresenter>().AsSingle();
         Container.BindInterfacesAndSelfTo<AIPlayer>().AsSingle();
         Container.Bind<BlindRules>().FromInstance(new BlindRules(50, 100)).AsSingle();
     }

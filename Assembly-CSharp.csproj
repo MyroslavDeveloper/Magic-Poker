@@ -89,7 +89,6 @@
     <Compile Include="Assets\Magic Poker\Scripts\API\DealingCards.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
     <Compile Include="Assets\Magic Poker\Scripts\Shuffler.cs" />
-    <Compile Include="Assets\Magic Poker\Scripts\Presenter\GamePresenter.cs" />
     <Compile Include="Assets\Magic Poker\Scripts\Object\Card.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\Magic Poker\Scripts\API\GameFlowManager.cs" />
@@ -98,7 +97,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
-    <Compile Include="Assets\Magic Poker\Scripts\API\GameManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\Magic Poker\Scripts\API\BlindRules.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />

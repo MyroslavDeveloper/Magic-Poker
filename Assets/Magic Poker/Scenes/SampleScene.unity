@@ -119,6 +119,52 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &216366184
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 216366186}
+  - component: {fileID: 216366185}
+  m_Layer: 0
+  m_Name: ManagerHandsPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &216366185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216366184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cba632eba50bd514192348e8cdae1e39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHand: {fileID: 612412212}
+  aiHand: {fileID: 1350389023}
+--- !u!4 &216366186
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216366184}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.343412, y: -3.2260745, z: 251.05357}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &302954643
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,7 +679,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 558011096}
-  - component: {fileID: 558011097}
   - component: {fileID: 558011098}
   m_Layer: 5
   m_Name: Player
@@ -662,22 +707,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -289}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &558011097
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 558011095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d57d7398837c3df47a5ee30a935331c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startHand:
-  - {fileID: 0}
-  - {fileID: 0}
-  chips: 1000
 --- !u!114 &558011098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -982,7 +1011,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 719980862}
-  - component: {fileID: 719980863}
   - component: {fileID: 719980861}
   m_Layer: 5
   m_Name: Bank
@@ -1024,18 +1052,6 @@ RectTransform:
   m_AnchoredPosition: {x: 557, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &719980863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 719980860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b463094fc90aed46a8ce60b086b2191, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &822329962
 GameObject:
   m_ObjectHideFlags: 0
@@ -1597,6 +1613,7 @@ GameObject:
   - component: {fileID: 955536844}
   - component: {fileID: 955536843}
   - component: {fileID: 955536845}
+  - component: {fileID: 955536846}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1616,13 +1633,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8cac65456729be4e9d508107e2f0d08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 558011097}
-  aIplayer: {fileID: 1052828456}
-  deckOfCard: {fileID: 1714896733}
-  playerHand: {fileID: 612412212}
-  AIHand: {fileID: 1350389023}
-  board: {fileID: 2026728648}
   gamePresenter: {fileID: 955536845}
+  gameFlowManager: {fileID: 955536846}
 --- !u!4 &955536844
 Transform:
   m_ObjectHideFlags: 0
@@ -1650,12 +1662,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c07db822d86175448ac81aef9809a29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 558011097}
-  playerView: {fileID: 558011098}
-  aiPlayer: {fileID: 1052828456}
-  aiPlayerView: {fileID: 1052828455}
-  bank: {fileID: 719980863}
   bankView: {fileID: 719980861}
+--- !u!114 &955536846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 955536842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b9ad9eccba89304496d261b67d814a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1036970771
 GameObject:
   m_ObjectHideFlags: 0
@@ -1787,7 +1806,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1052828453}
   - component: {fileID: 1052828455}
-  - component: {fileID: 1052828456}
   m_Layer: 5
   m_Name: AIPlayer
   m_TagString: Untagged
@@ -1828,22 +1846,90 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chipsText: {fileID: 925393190}
---- !u!114 &1052828456
+--- !u!1 &1227738415
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1227738418}
+  - component: {fileID: 1227738417}
+  - component: {fileID: 1227738416}
+  m_Layer: 0
+  m_Name: SceneContext
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1227738416
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1052828452}
+  m_GameObject: {fileID: 1227738415}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7f0fbb7d2e52e745b3958360fd97b8c, type: 3}
+  m_Script: {fileID: 11500000, guid: 7dd13b600215bf64eb28b04546eee702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startHand:
-  - {fileID: 0}
-  - {fileID: 0}
-  chips: 1000
+  gameFlowManager: {fileID: 955536846}
+  deckOfCard: {fileID: 1714896733}
+  board: {fileID: 2026728648}
+  bankView: {fileID: 719980861}
+  playerView: {fileID: 558011098}
+  aIPlayerView: {fileID: 1052828455}
+  managerHandsPositions: {fileID: 216366185}
+--- !u!114 &1227738417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227738415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89715ad69b973a14899afa2c6730b30b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scriptableObjectInstallers: []
+  _monoInstallers:
+  - {fileID: 1227738416}
+  _installerPrefabs: []
+  _autoRun: 1
+  OnPreInstall:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPostInstall:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPreResolve:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPostResolve:
+    m_PersistentCalls:
+      m_Calls: []
+  _parentNewObjectsUnderSceneContext: 0
+  _contractNames: []
+  _parentContractNames: []
+--- !u!4 &1227738418
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227738415}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1251637395
 GameObject:
   m_ObjectHideFlags: 0
@@ -2547,8 +2633,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 955536843}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 955536846}
+        m_TargetAssemblyTypeName: GameFlowManager, Assembly-CSharp
         m_MethodName: NextRound
         m_Mode: 1
         m_Arguments:
@@ -2991,3 +3077,5 @@ SceneRoots:
   - {fileID: 1251637399}
   - {fileID: 822329965}
   - {fileID: 955536844}
+  - {fileID: 1227738418}
+  - {fileID: 216366186}

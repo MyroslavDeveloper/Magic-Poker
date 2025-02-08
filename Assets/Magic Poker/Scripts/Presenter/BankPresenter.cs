@@ -3,28 +3,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Zenject;
 
-public class BankPresenter : IDisposable
+public class BankPresenter : IDisposable, IInitializable
 {
-    private Bank bank;
-    private BankView bankView;
-    private List<BasePlayer> players = new();
+    [Inject] private IBank bank;
+    [Inject] private BankView bankView;
     [Inject] private Player player;
     [Inject] private AIPlayer aiPlayer;
-    public BankPresenter(Bank bank, BankView bankView)
-    {
-        this.bank = bank;
-        this.bankView = bankView;
-    }
-    [Inject]
-    private void AddPlayers()
-    {
-        players.Add(player);
-        players.Add(aiPlayer);
-        foreach (var player in players)
-        {
-            player.bettedChipts += AddChips;
-        }
-    }
+
     private void AddChips(int amount)
     {
 
@@ -34,9 +19,15 @@ public class BankPresenter : IDisposable
 
     public void Dispose()
     {
-        foreach (var player in players)
-        {
-            player.bettedChipts -= AddChips;
-        }
+
+        player.bettedChipts -= AddChips;
+        aiPlayer.bettedChipts -= AddChips;
+
+    }
+
+    public void Initialize()
+    {
+        player.bettedChipts += AddChips;
+        aiPlayer.bettedChipts += AddChips;
     }
 }
