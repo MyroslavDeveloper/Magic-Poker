@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public abstract class DealingCards
+public abstract class DealingCards : IChangeParentCard
 {
     private DeckOfCard deckOfCard;
 
@@ -15,14 +15,7 @@ public abstract class DealingCards
     {
         Card[] hand = deckOfCard.Deck.TakeLast(count).ToArray();
         setMethod(target, hand);
-        ChangeParentForCard(hand, parent);
+        ((IChangeParentCard)this).ChangeParentCard(hand, parent);
         deckOfCard.Deck.RemoveRange(deckOfCard.Deck.Count - count, count);
-    }
-    private void ChangeParentForCard(IEnumerable<Card> cards, Transform parent)
-    {
-        foreach (var card in cards)
-        {
-            card.transform.SetParent(parent);
-        }
     }
 }

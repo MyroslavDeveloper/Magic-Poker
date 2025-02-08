@@ -7,8 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public event Action NextDeal;
-    [SerializeField] private Player player;
-    [SerializeField] private AIPlayer aIplayer;
+    private Player player;
+    private AIPlayer aIplayer;
     [SerializeField] private DeckOfCard deckOfCard;
     [SerializeField] private Transform playerHand;
     [SerializeField] private Transform AIHand;
@@ -42,6 +42,8 @@ public class GameManager : MonoBehaviour
     }
     private void Initialize()
     {
+        player = new();
+        aIplayer = new();
         players = new List<BasePlayer> { player, aIplayer };
         blindRules = new BlindRules(50, 100);
         feelingHand = new FeelingHand(player, aIplayer, deckOfCard, playerHand, AIHand);
@@ -49,6 +51,14 @@ public class GameManager : MonoBehaviour
         blindsManager = new BlindsManager(players, blindRules);
         returnCards = new ReturnCards(player, aIplayer, deckOfCard, board);
         gamePresenter.Initialize();
+    }
+    public Player GetPlayer()
+    {
+        return player;
+    }
+    public AIPlayer GetAIPlayer()
+    {
+        return aIplayer;
     }
     public BlindsManager GetBlindsManager()
     {

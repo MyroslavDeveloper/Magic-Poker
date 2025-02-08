@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ReturnCards : MonoBehaviour
+public class ReturnCards : IChangeParentCard
 {
     private Player player;
     private AIPlayer aIplayer;
@@ -18,19 +18,21 @@ public class ReturnCards : MonoBehaviour
 
     public void ReturnAllCards()
     {
-        ReturnCardsChangeParentForCard(player.GetStartHand(), deckOfCard.transform);
-        ReturnCardsChangeParentForCard(aIplayer.GetStartHand(), deckOfCard.transform);
-        ReturnCardsChangeParentForCard(board.ReturnCards(), deckOfCard.transform);
+        ChangeParentCard(player.GetStartHand(), deckOfCard.transform);
+        ChangeParentCard(aIplayer.GetStartHand(), deckOfCard.transform);
+        ChangeParentCard(board.ReturnCards(), deckOfCard.transform);
+
         deckOfCard.AddCards(player.GetStartHand());
         deckOfCard.AddCards(aIplayer.GetStartHand());
         deckOfCard.AddCards(board.ReturnCards());
     }
-    private void ReturnCardsChangeParentForCard(IEnumerable<Card> cards, Transform parent)
+
+    public void ChangeParentCard(IEnumerable<Card> cards, Transform parent)
     {
         foreach (var card in cards)
         {
             card.transform.SetParent(parent);
-            card.transform.position = Vector2.zero;
+            card.transform.localPosition = Vector2.zero;
             card.SetBackSide(false);
         }
     }

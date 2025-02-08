@@ -17,8 +17,8 @@ public class GamePresenter : MonoBehaviour
 
     public void Initialize()
     {
-        presenters.Add(new PlayerPresenter(player, playerView, GameManager.Instance.GetBlindsManager()));
-        presenters.Add(new AIPlayerPresenter(aiPlayer, aiPlayerView, GameManager.Instance.GetBlindsManager()));
+        presenters.Add(new PlayerPresenter(GameManager.Instance.GetPlayer(), playerView, GameManager.Instance.GetBlindsManager()));
+        presenters.Add(new AIPlayerPresenter(GameManager.Instance.GetAIPlayer(), aiPlayerView, GameManager.Instance.GetBlindsManager()));
         presenters.Add(new BankPresenter(bank, bankView, GameManager.Instance.GetAllPlayers()));
     }
 

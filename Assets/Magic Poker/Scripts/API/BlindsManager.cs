@@ -36,12 +36,12 @@ public class BlindsManager : IDisposable
 
         int smallBlindBet = Math.Min(smallBlindPlayer.GetChips(), blindRules.SmallBlind);
         smallBlindPlayer.BetChips(smallBlindBet);
-        Debug.Log($"{smallBlindPlayer.name} поставил {smallBlindBet} фишек (малый блайнд)");
+
 
 
         int bigBlindBet = Math.Min(bigBlindPlayer.GetChips(), blindRules.BigBlind);
         bigBlindPlayer.BetChips(bigBlindBet);
-        Debug.Log($"{bigBlindPlayer.name} поставил {bigBlindBet} фишек (большой блайнд)");
+
         OnBlinding?.Invoke();
         MoveBlinds();
     }

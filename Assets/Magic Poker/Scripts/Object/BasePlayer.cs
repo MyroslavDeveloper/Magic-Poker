@@ -1,11 +1,11 @@
 using System;
 using UnityEngine;
 
-public abstract class BasePlayer : MonoBehaviour
+public abstract class BasePlayer
 {
     public event Action<int> bettedChipts;
     [SerializeField] private Card[] startHand = new Card[2];
-    [SerializeField] private int chips;
+    [SerializeField] private int chips = 1000;
 
     public virtual void SetStartHand(Card[] cards)
     {
@@ -19,7 +19,7 @@ public abstract class BasePlayer : MonoBehaviour
     {
         if (amount > chips)
         {
-            Debug.LogWarning($"{gameObject.name}: Недостаточно фишек!");
+
             return;
         }
         chips -= amount;
