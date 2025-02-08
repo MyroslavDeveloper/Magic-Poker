@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class GamePresenter : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class GamePresenter : MonoBehaviour
     [SerializeField] private AIPlayerView aiPlayerView;
     [SerializeField] private Bank bank;
     [SerializeField] private BankView bankView;
+    [Inject] private DiContainer diContainer;
 
     private List<IDisposable> presenters = new();
 
@@ -18,8 +20,9 @@ public class GamePresenter : MonoBehaviour
     public void Initialize()
     {
         presenters.Add(new PlayerPresenter(GameManager.Instance.GetPlayer(), playerView, GameManager.Instance.GetBlindsManager()));
-        presenters.Add(new AIPlayerPresenter(GameManager.Instance.GetAIPlayer(), aiPlayerView, GameManager.Instance.GetBlindsManager()));
-        presenters.Add(new BankPresenter(bank, bankView, GameManager.Instance.GetAllPlayers()));
+        //presenters.Add(new AIPlayerPresenter(GameManager.Instance.GetAIPlayer(), aiPlayerView, GameManager.Instance.GetBlindsManager()));
+        presenters.Add(diContainer.Instantiate<AIPlayerPresenter>(new object[] { GameManager.Instance.GetAIPlayer(), aiPlayerView, GameManager.Instance.GetBlindsManager() }));
+        presenters.Add(diContainer.Instantiate<BankPresenter>(new object[] { bank, bankView }));
     }
 
     private void OnDestroy()

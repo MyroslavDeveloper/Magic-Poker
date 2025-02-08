@@ -1,25 +1,30 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Zenject;
 
 public class BankPresenter : IDisposable
 {
     private Bank bank;
     private BankView bankView;
-    private List<BasePlayer> players;
-
-    public BankPresenter(Bank bank, BankView bankView, List<BasePlayer> players)
+    private List<BasePlayer> players = new();
+    [Inject] private Player player;
+    [Inject] private AIPlayer aiPlayer;
+    public BankPresenter(Bank bank, BankView bankView)
     {
         this.bank = bank;
         this.bankView = bankView;
-        this.players = players;
-
+    }
+    [Inject]
+    private void AddPlayers()
+    {
+        players.Add(player);
+        players.Add(aiPlayer);
         foreach (var player in players)
         {
             player.bettedChipts += AddChips;
         }
     }
-
     private void AddChips(int amount)
     {
 

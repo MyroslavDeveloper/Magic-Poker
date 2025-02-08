@@ -2,13 +2,14 @@ using UnityEngine;
 using System.Linq;
 using System;
 using System.Collections.Generic;
+using Zenject;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public event Action NextDeal;
-    private Player player;
-    private AIPlayer aIplayer;
+    [Inject] private Player player;
+    [Inject] private AIPlayer aIplayer;
     [SerializeField] private DeckOfCard deckOfCard;
     [SerializeField] private Transform playerHand;
     [SerializeField] private Transform AIHand;
@@ -18,10 +19,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameFlowManager gameFlowManager;
     private BlindsManager blindsManager;
     private FeelingHand feelingHand;
-    private BlindRules blindRules;
+    [Inject] private BlindRules blindRules;
     private List<BasePlayer> players;
     private FeelingBoard feelingBoard;
     private ReturnCards returnCards;
+    [Inject] private DiContainer diContainer;
+
     private void Awake()
     {
         if (Instance == null)
@@ -33,21 +36,21 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        Initialize();
         DontDestroyOnLoad(gameObject);
+        Initialize();
+    }
+    private void Start()
+    {
+        // Initialize();
     }
 
     private void Initialize()
     {
-
-        player = new Player();
-        aIplayer = new AIPlayer();
         players = new List<BasePlayer> { player, aIplayer };
-        blindRules = new BlindRules(50, 100);
-        feelingHand = new FeelingHand(player, aIplayer, deckOfCard, playerHand, AIHand);
-        feelingBoard = new FeelingBoard(deckOfCard, board);
-        blindsManager = new BlindsManager(players, blindRules);
-        returnCards = new ReturnCards(player, aIplayer, deckOfCard, board);
+        feelingHand = diContainer.Instantiate<FeelingHand>(new object[] { player, aIplayer, deckOfCard, playerHand, AIHand });
+        feelingBoard = diContainer.Instantiate<FeelingBoard>(new object[] { deckOfCard, board });
+        blindsManager = diContainer.Instantiate<BlindsManager>();
+        returnCards = diContainer.Instantiate<ReturnCards>(new object[] { player, aIplayer, deckOfCard, board });
         gamePresenter.Initialize();
     }
     public GameFlowManager GetGameFlowManager()
