@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Zenject;
 
 public abstract class BasePlayerPresenter<TPlayer, TView> : IDisposable
     where TPlayer : BasePlayer
@@ -8,6 +9,7 @@ public abstract class BasePlayerPresenter<TPlayer, TView> : IDisposable
     protected TPlayer player;
     protected TView view;
     protected BlindsManager blindsManager;
+    [Inject] private GameFlowManager gameFlowManager;
 
     protected BasePlayerPresenter(TPlayer player, TView view, BlindsManager blindsManager)
     {
@@ -31,8 +33,9 @@ public abstract class BasePlayerPresenter<TPlayer, TView> : IDisposable
     {
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.GetGameFlowManager().NextDeal -= UpdateView;
+            gameFlowManager.NextDeal -= UpdateView;
         }
         blindsManager.OnBlinding -= UpdateView;
     }
+
 }

@@ -3,29 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using Zenject;
 
 public class DeckOfCard : MonoBehaviour
 {
     private List<Card> deck = new List<Card>();
     [SerializeField] private List<CardData> cardDatas;
     [SerializeField] private GameObject cardPrefab;
+    [Inject] private GameFlowManager gameFlowManager;
 
     public List<Card> Deck => deck;
 
     private void OnEnable()
     {
-        if (GameManager.Instance != null)
-        {
-            GameManager.Instance.GetGameFlowManager().NextDeal += ShuffleDeck;
-        }
+        gameFlowManager.NextDeal += ShuffleDeck;
     }
 
     private void OnDisable()
     {
-        if (GameManager.Instance != null)
-        {
-            GameManager.Instance.GetGameFlowManager().NextDeal -= ShuffleDeck;
-        }
+        gameFlowManager.NextDeal -= ShuffleDeck;
     }
     private void Awake()
     {

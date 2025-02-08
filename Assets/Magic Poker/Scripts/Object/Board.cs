@@ -1,25 +1,21 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class Board : MonoBehaviour
 {
   private Card[] flopCards = new Card[3];
   private Card turnCard;
   private Card riverCard;
+  [Inject] private GameFlowManager gameFlowManager;
   private void OnEnable()
   {
-    if (GameManager.Instance != null)
-    {
-      GameManager.Instance.GetGameFlowManager().NextDeal += ClearBoard;
-    }
+    gameFlowManager.NextDeal += ClearBoard;
   }
 
   private void OnDisable()
   {
-    if (GameManager.Instance != null)
-    {
-      GameManager.Instance.GetGameFlowManager().NextDeal -= ClearBoard;
-    }
+    gameFlowManager.NextDeal -= ClearBoard;
   }
   public void SetFlop(Card[] cards)
   {

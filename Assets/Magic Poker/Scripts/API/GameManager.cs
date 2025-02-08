@@ -49,7 +49,6 @@ public class GameManager : MonoBehaviour
         players = new List<BasePlayer> { player, aIplayer };
         feelingHand = diContainer.Instantiate<FeelingHand>(new object[] { player, aIplayer, deckOfCard, playerHand, AIHand });
         feelingBoard = diContainer.Instantiate<FeelingBoard>(new object[] { deckOfCard, board });
-        blindsManager = diContainer.Instantiate<BlindsManager>();
         returnCards = diContainer.Instantiate<ReturnCards>(new object[] { player, aIplayer, deckOfCard, board });
         gamePresenter.Initialize();
     }
@@ -69,22 +68,7 @@ public class GameManager : MonoBehaviour
     {
         return returnCards;
     }
-    public Player GetPlayer()
-    {
-        return player;
-    }
-    public AIPlayer GetAIPlayer()
-    {
-        return aIplayer;
-    }
-    public BlindsManager GetBlindsManager()
-    {
-        return blindsManager;
-    }
-    public List<BasePlayer> GetAllPlayers()
-    {
-        return players;
-    }
+
     private void OnDestroy()
     {
         blindsManager?.Dispose();

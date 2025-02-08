@@ -5,9 +5,10 @@ using Zenject;
 
 public class GamePresenter : MonoBehaviour
 {
-    [SerializeField] private Player player;
+    [Inject] private Player player;
+    [Inject] private BlindsManager blindsManager;
     [SerializeField] private PlayerView playerView;
-    [SerializeField] private AIPlayer aiPlayer;
+    [Inject] private AIPlayer aiPlayer;
     [SerializeField] private AIPlayerView aiPlayerView;
     [SerializeField] private Bank bank;
     [SerializeField] private BankView bankView;
@@ -19,9 +20,8 @@ public class GamePresenter : MonoBehaviour
 
     public void Initialize()
     {
-        presenters.Add(new PlayerPresenter(GameManager.Instance.GetPlayer(), playerView, GameManager.Instance.GetBlindsManager()));
-        //presenters.Add(new AIPlayerPresenter(GameManager.Instance.GetAIPlayer(), aiPlayerView, GameManager.Instance.GetBlindsManager()));
-        presenters.Add(diContainer.Instantiate<AIPlayerPresenter>(new object[] { GameManager.Instance.GetAIPlayer(), aiPlayerView, GameManager.Instance.GetBlindsManager() }));
+        presenters.Add(diContainer.Instantiate<PlayerPresenter>(new object[] { player, playerView, blindsManager }));
+        presenters.Add(diContainer.Instantiate<AIPlayerPresenter>(new object[] { aiPlayer, aiPlayerView, blindsManager }));
         presenters.Add(diContainer.Instantiate<BankPresenter>(new object[] { bank, bankView }));
     }
 

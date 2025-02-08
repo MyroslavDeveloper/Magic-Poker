@@ -1,12 +1,14 @@
 using System;
 using UnityEngine;
+using Zenject;
 
 public class GameFlowManager : MonoBehaviour
 {
     public event Action NextDeal;
+    [Inject] private BlindsManager blindsManager;
     private void Start()
     {
-        GameManager.Instance.GetBlindsManager().AssignBlinds();
+        blindsManager.AssignBlinds();
         StartNewRound();
     }
     public void NextRound()
