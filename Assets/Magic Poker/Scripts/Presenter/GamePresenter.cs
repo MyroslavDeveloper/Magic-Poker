@@ -7,9 +7,8 @@ public class GamePresenter : MonoBehaviour
 {
     [Inject] private Player player;
     [Inject] private BlindsManager blindsManager;
-    [SerializeField] private PlayerView playerView;
     [Inject] private AIPlayer aiPlayer;
-    [SerializeField] private AIPlayerView aiPlayerView;
+
     [SerializeField] private Bank bank;
     [SerializeField] private BankView bankView;
     [Inject] private DiContainer diContainer;
@@ -20,8 +19,8 @@ public class GamePresenter : MonoBehaviour
 
     public void Initialize()
     {
-        presenters.Add(diContainer.Instantiate<PlayerPresenter>(new object[] { player, playerView, blindsManager }));
-        presenters.Add(diContainer.Instantiate<AIPlayerPresenter>(new object[] { aiPlayer, aiPlayerView, blindsManager }));
+        //   presenters.Add(diContainer.Instantiate<PlayerPresenter>(new object[] { player, playerView }));
+        //    presenters.Add(diContainer.Instantiate<AIPlayerPresenter>(new object[] { aiPlayer, aiPlayerView }));
         presenters.Add(diContainer.Instantiate<BankPresenter>(new object[] { bank, bankView }));
     }
 

@@ -7,6 +7,8 @@ public class GameFlowManager : MonoBehaviour
     public event Action NextDeal;
     [Inject] private BlindsManager blindsManager;
     [Inject] private FeelingBoard feelingBoard;
+    [Inject] private FeelingHand feelingHand;
+    [Inject] private ReturnCards returnCards;
     private void Start()
     {
         blindsManager.AssignBlinds();
@@ -14,13 +16,13 @@ public class GameFlowManager : MonoBehaviour
     }
     public void NextRound()
     {
-        GameManager.Instance.GetReturnCards().ReturnAllCards();
+        returnCards.ReturnAllCards();
         NextDeal?.Invoke();
         StartNewRound();
     }
     private void StartNewRound()
     {
-        GameManager.Instance.GetFeelingHand().DealStartingHands();
+        feelingHand.DealStartingHands();
         feelingBoard.FeelFlop();
         feelingBoard.FeelTurn();
         feelingBoard.FeelRiver();

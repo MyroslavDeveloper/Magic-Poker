@@ -2,27 +2,22 @@ using System;
 using UnityEngine;
 using Zenject;
 
-public abstract class BasePlayerPresenter<TPlayer, TView> : IDisposable
+public abstract class BasePlayerPresenter<TPlayer, TView> : IDisposable, IInitializable
     where TPlayer : BasePlayer
     where TView : MonoBehaviour, IChipsView
 {
-    protected TPlayer player;
-    protected TView view;
-    protected BlindsManager blindsManager;
+    [Inject] protected TPlayer player;
+    [Inject] protected TView view;
+    [Inject] protected BlindsManager blindsManager;
     [Inject] private GameFlowManager gameFlowManager;
 
-    protected BasePlayerPresenter(TPlayer player, TView view, BlindsManager blindsManager)
-    {
-        this.player = player;
-        this.view = view;
-        this.blindsManager = blindsManager;
-        UpdateView();
-        if (GameManager.Instance != null)
-        {
-            GameManager.Instance.GetGameFlowManager().NextDeal += UpdateView;
-        }
-        blindsManager.OnBlinding += UpdateView;
-    }
+
+    // protected BasePlayerPresenter(TPlayer player, TView view)
+    // {
+    //     this.player = player;
+    //     this.view = view;
+    //     UpdateView();
+    // }
 
     protected void UpdateView()
     {
@@ -31,11 +26,19 @@ public abstract class BasePlayerPresenter<TPlayer, TView> : IDisposable
 
     public virtual void Dispose()
     {
-        if (GameManager.Instance != null)
-        {
-            gameFlowManager.NextDeal -= UpdateView;
-        }
+        gameFlowManager.NextDeal -= UpdateView;
         blindsManager.OnBlinding -= UpdateView;
     }
 
+    public void Initialize()
+    {
+        blindsManager.OnBlinding += UpdateView;
+        gameFlowManager.NextDeal += UpdateView;
+        UpdateView();
+        OnInitialize();
+    }
+    protected virtual void OnInitialize()
+    {
+
+    }
 }

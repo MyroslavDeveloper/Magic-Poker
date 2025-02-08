@@ -1,20 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class ReturnCards : IChangeParentCard
 {
-    private Player player;
-    private AIPlayer aIplayer;
-    private DeckOfCard deckOfCard;
-    private Board board;
+    [Inject] private Player player;
+    [Inject] private AIPlayer aIplayer;
+    [Inject] private DeckOfCard deckOfCard;
 
-    public ReturnCards(Player player, AIPlayer aIplayer, DeckOfCard deckOfCard, Board board)
-    {
-        this.player = player;
-        this.aIplayer = aIplayer;
-        this.deckOfCard = deckOfCard;
-        this.board = board;
-    }
+    [Inject] private Board board;
 
     public void ReturnAllCards()
     {
