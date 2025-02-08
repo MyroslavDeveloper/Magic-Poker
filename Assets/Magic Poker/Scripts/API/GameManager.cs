@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GamePresenter gamePresenter;
 
     private BlindsManager blindsManager;
-    private DealingCards dealingCards;
+    private FeelingHand feelingHand;
     private BlindRules blindRules;
     private List<BasePlayer> players;
     private FeelingBoard feelingBoard;
@@ -44,8 +44,8 @@ public class GameManager : MonoBehaviour
     {
         players = new List<BasePlayer> { player, aIplayer };
         blindRules = new BlindRules(50, 100);
-        dealingCards = new DealingCards(player, aIplayer, deckOfCard, playerHand, AIHand);
-        feelingBoard = new FeelingBoard(player, aIplayer, deckOfCard, playerHand, AIHand);
+        feelingHand = new FeelingHand(player, aIplayer, deckOfCard, playerHand, AIHand);
+        feelingBoard = new FeelingBoard(deckOfCard, board);
         blindsManager = new BlindsManager(players, blindRules);
         returnCards = new ReturnCards(player, aIplayer, deckOfCard, board);
         gamePresenter.Initialize();
@@ -66,10 +66,10 @@ public class GameManager : MonoBehaviour
     }
     private void StartNewRound()
     {
-        dealingCards.DealStartingHands();
-        feelingBoard.FeelFlop(board);
-        feelingBoard.FeelTurn(board);
-        feelingBoard.FeelRiver(board);
+        feelingHand.DealStartingHands();
+        feelingBoard.FeelFlop();
+        feelingBoard.FeelTurn();
+        feelingBoard.FeelRiver();
     }
 
     private void OnDestroy()

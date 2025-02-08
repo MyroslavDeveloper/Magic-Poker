@@ -117,13 +117,13 @@
     <Compile Include="Library\PackageCache\com.unity.test-framework@0a21eb82d95c\UnityEditor.TestRunner\TestLaunchers\Helpers\FilePathMetaInfo.cs" />
     <Compile Include="Library\PackageCache\com.unity.test-framework@0a21eb82d95c\UnityEditor.TestRunner\GUI\Controls\MultiValueContentProvider.cs" />
     <Compile Include="Library\PackageCache\com.unity.test-framework@0a21eb82d95c\UnityEditor.TestRunner\CommandLineParser\ICommandLineOption.cs" />
-    <Compile Include="Library\PackageCache\com.unity.test-framework@0a21eb82d95c\UnityEditor.TestRunner\TestRun\Tasks\SaveUndoIndexTask.cs" />
     <Compile Include="Library\PackageCache\com.unity.test-framework@0a21eb82d95c\UnityEditor.TestRunner\TestRun\Tasks\CleanupConstructDelegatorTask.cs" />
+    <Compile Include="Library\PackageCache\com.unity.test-framework@0a21eb82d95c\UnityEditor.TestRunner\TestRun\Tasks\SaveUndoIndexTask.cs" />
     <Compile Include="Library\PackageCache\com.unity.test-framework@0a21eb82d95c\UnityEditor.TestRunner\Api\ITestRunnerApi.cs" />
     <Compile Include="Library\PackageCache\com.unity.test-framework@0a21eb82d95c\UnityEditor.TestRunner\TestLaunchers\Helpers\PrebuildSetupAttributeFinder.cs" />
     <Compile Include="Library\PackageCache\com.unity.test-framework@0a21eb82d95c\UnityEditor.TestRunner\TestLaunchers\RemotePlayerLogController.cs" />
-    <Compile Include="Library\PackageCache\com.unity.test-framework@0a21eb82d95c\UnityEditor.TestRunner\TestLaunchers\PlatformSetup\IPlatformSetup.cs" />
     <Compile Include="Library\PackageCache\com.unity.test-framework@0a21eb82d95c\UnityEditor.TestRunner\TestRunner\EditModePCHelper.cs" />
+    <Compile Include="Library\PackageCache\com.unity.test-framework@0a21eb82d95c\UnityEditor.TestRunner\TestLaunchers\PlatformSetup\IPlatformSetup.cs" />
     <Compile Include="Library\PackageCache\com.unity.test-framework@0a21eb82d95c\UnityEditor.TestRunner\UnityTestProtocol\TestState.cs" />
     <Compile Include="Library\PackageCache\com.unity.test-framework@0a21eb82d95c\UnityEditor.TestRunner\UnityTestProtocol\Messages\EditorVersionMessage.cs" />
     <Compile Include="Library\PackageCache\com.unity.test-framework@0a21eb82d95c\UnityEditor.TestRunner\CommandLineTest\SettingsBuilder.cs" />

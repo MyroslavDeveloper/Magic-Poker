@@ -346,9 +346,9 @@
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@001b54a8988a\Editor\UI\Tree\DrawTreeViewEmptyState.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@001b54a8988a\Editor\FindWorkspace.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@001b54a8988a\Editor\UI\SortOrderComparer.cs" />
-    <Compile Include="Library\PackageCache\com.unity.collab-proxy@001b54a8988a\Editor\UI\ResponseType.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@001b54a8988a\Editor\Configuration\CloudEdition\Welcome\SignInPanel.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@001b54a8988a\Editor\Views\Diff\ClientDiffTreeViewItem.cs" />
+    <Compile Include="Library\PackageCache\com.unity.collab-proxy@001b54a8988a\Editor\UI\ResponseType.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@001b54a8988a\Editor\Views\CreateWorkspace\Dialogs\RepositoryListViewItem.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@001b54a8988a\Editor\Configuration\TeamEdition\TeamEditionConfigurationWindow.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@001b54a8988a\Editor\UI\FindEditorWindow.cs" />

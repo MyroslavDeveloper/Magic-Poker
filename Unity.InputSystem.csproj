@@ -182,8 +182,8 @@
     <Compile Include="Library\PackageCache\com.unity.inputsystem@920b46832575\InputSystem\Controls\InputControlLayout.cs" />
     <Compile Include="Library\PackageCache\com.unity.inputsystem@920b46832575\InputSystem\Plugins\Steam\SteamSupport.cs" />
     <Compile Include="Library\PackageCache\com.unity.inputsystem@920b46832575\InputSystem\Controls\InputControlList.cs" />
-    <Compile Include="Library\PackageCache\com.unity.inputsystem@920b46832575\InputSystem\Utilities\JsonParser.cs" />
     <Compile Include="Library\PackageCache\com.unity.inputsystem@920b46832575\InputSystem\Plugins\HID\HIDDescriptorWindow.cs" />
+    <Compile Include="Library\PackageCache\com.unity.inputsystem@920b46832575\InputSystem\Utilities\JsonParser.cs" />
     <Compile Include="Library\PackageCache\com.unity.inputsystem@920b46832575\InputSystem\Controls\Processors\AxisDeadzoneProcessor.cs" />
     <Compile Include="Library\PackageCache\com.unity.inputsystem@920b46832575\InputSystem\Plugins\Steam\SteamControllerType.cs" />
     <Compile Include="Library\PackageCache\com.unity.inputsystem@920b46832575\InputSystem\Plugins\Users\InputUserSettings.cs" />
@@ -380,8 +380,8 @@
     <Compile Include="Library\PackageCache\com.unity.inputsystem@920b46832575\InputSystem\Actions\IInputActionCollection.cs" />
     <Compile Include="Library\PackageCache\com.unity.inputsystem@920b46832575\InputSystem\Devices\Joystick.cs" />
     <Compile Include="Library\PackageCache\com.unity.inputsystem@920b46832575\InputSystem\Plugins\Steam\IStreamControllerAPI.cs" />
-    <Compile Include="Library\PackageCache\com.unity.inputsystem@920b46832575\InputSystem\Plugins\PlayerInput\DefaultInputActions.cs" />
     <Compile Include="Library\PackageCache\com.unity.inputsystem@920b46832575\InputSystem\Devices\Commands\QuerySamplingFrequencyCommand.cs" />
+    <Compile Include="Library\PackageCache\com.unity.inputsystem@920b46832575\InputSystem\Plugins\PlayerInput\DefaultInputActions.cs" />
     <Compile Include="Library\PackageCache\com.unity.inputsystem@920b46832575\InputSystem\Editor\AssetEditor\InputActionTreeViewItems.cs" />
     <Compile Include="Library\PackageCache\com.unity.inputsystem@920b46832575\InputSystem\Plugins\HID\HIDSupport.cs" />
     <Compile Include="Library\PackageCache\com.unity.inputsystem@920b46832575\InputSystem\Actions\InputActionChange.cs" />
@@ -430,8 +430,8 @@
     <Compile Include="Library\PackageCache\com.unity.inputsystem@920b46832575\InputSystem\Utilities\Observables\SelectObservable.cs" />
     <Compile Include="Library\PackageCache\com.unity.inputsystem@920b46832575\InputSystem\Devices\InputDevice.cs" />
     <Compile Include="Library\PackageCache\com.unity.inputsystem@920b46832575\InputSystem\Plugins\WebGL\WebGLGamepad.cs" />
-    <Compile Include="Library\PackageCache\com.unity.inputsystem@920b46832575\InputSystem\Events\IInputEventTypeInfo.cs" />
     <Compile Include="Library\PackageCache\com.unity.inputsystem@920b46832575\InputSystem\Actions\InputActionTrace.cs" />
+    <Compile Include="Library\PackageCache\com.unity.inputsystem@920b46832575\InputSystem\Events\IInputEventTypeInfo.cs" />
     <Compile Include="Library\PackageCache\com.unity.inputsystem@920b46832575\InputSystem\Controls\TouchPhaseControl.cs" />
     <Compile Include="Library\PackageCache\com.unity.inputsystem@920b46832575\InputSystem\Actions\Composites\ButtonWithTwoModifiers.cs" />
     <Compile Include="Library\PackageCache\com.unity.inputsystem@920b46832575\InputSystem\Editor\Analytics\PlayerInputEditorAnalytic.cs" />
@@ -955,6 +955,10 @@
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.0.36f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Zenject-usage">
+      <HintPath>Assets\Plugins\Zenject\Source\Usage\Zenject-usage.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.VisualScripting.YamlDotNet">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1b53f46e931b\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
       <Private>False</Private>
@@ -979,6 +983,10 @@
       <HintPath>Library\PackageCache\com.unity.collab-proxy@001b54a8988a\Lib\Editor\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Pdb">
+      <HintPath>Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Pdb.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="log4netPlastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@001b54a8988a\Lib\Editor\log4netPlastic.dll</HintPath>
       <Private>False</Private>
@@ -987,8 +995,16 @@
       <HintPath>Library\PackageCache\com.unity.visualscripting@1b53f46e931b\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Rocks">
+      <HintPath>Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Rocks.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1b53f46e931b\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Mdb">
+      <HintPath>Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Mdb.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.VisualScripting.TextureAssets">
@@ -999,24 +1015,8 @@
       <HintPath>Library\PackageCache\com.unity.nuget.mono-cecil@d6f9955a5d5f\Mono.Cecil.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Rocks">
-      <HintPath>Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Rocks.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Pdb">
-      <HintPath>Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Pdb.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Zenject-usage">
-      <HintPath>Assets\Plugins\Zenject\Source\Usage\Zenject-usage.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
       <HintPath>Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Mdb">
-      <HintPath>Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Mdb.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="netstandard">
