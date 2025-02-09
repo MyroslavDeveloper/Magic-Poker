@@ -13,8 +13,14 @@ public class GameInstallers : MonoInstaller
 
     [SerializeField] private ManagerHandsPositions managerHandsPositions;
 
+
     public override void InstallBindings()
     {
+
+        Container.Bind<DealingState>().AsSingle().NonLazy();
+        Container.Bind<PreflopState>().AsSingle().NonLazy();
+        Container.Bind<DealStateMachine>().AsSingle();
+        Container.BindInterfacesAndSelfTo<StateManager>().AsSingle();
         Container.Bind<PlayerView>().FromInstance(playerView);
         Container.Bind<BankView>().FromInstance(bankView);
         Container.Bind<AIPlayerView>().FromInstance(aIPlayerView);

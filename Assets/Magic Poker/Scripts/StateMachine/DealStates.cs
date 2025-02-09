@@ -7,5 +7,4 @@ public enum DealStates
     Flop,
     Turn,
     River
-
 }

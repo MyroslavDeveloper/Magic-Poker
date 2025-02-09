@@ -9,10 +9,11 @@ public class GameFlowManager : MonoBehaviour
     [Inject] private FeelingBoard feelingBoard;
     [Inject] private FeelingHand feelingHand;
     [Inject] private ReturnCards returnCards;
+
     private void Start()
     {
-        blindsManager.AssignBlinds();
-        StartNewRound();
+        //  blindsManager.AssignBlinds();
+        // StartNewRound();
     }
     public void NextRound()
     {
