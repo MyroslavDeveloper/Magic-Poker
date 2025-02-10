@@ -2,16 +2,16 @@ using UnityEngine;
 
 
 
-public class Flop : State
+public class TurnState : State
 {
 
     public override void Enter()
     {
-        Debug.Log("Enter Flop State");
+        Debug.Log("Enter Turn State");
     }
 
     public override void Exit()
     {
-        Debug.Log("Exit Flop State");
+        Debug.Log("Exit Turn State");
     }
 }

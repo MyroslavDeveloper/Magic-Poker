@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-public class River : State
+public class RiverState : State
 {
 
     public override void Enter()

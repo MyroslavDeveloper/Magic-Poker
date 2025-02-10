@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Transactions;
 using UnityEngine;
 using Zenject;
@@ -10,34 +11,85 @@ public class GameInstallers : MonoInstaller
     [SerializeField] private BankView bankView;
     [SerializeField] private PlayerView playerView;
     [SerializeField] private AIPlayerView aIPlayerView;
-
     [SerializeField] private ManagerHandsPositions managerHandsPositions;
+
+
 
 
     public override void InstallBindings()
     {
+        BindStates();
+        BindStateMachines();
+        BindManagers();
+        BindViews();
+        BindGameplayLogic();
+        BindConfig();
+        BindPresenter();
+        BindPlayer();
+    }
 
+    private void BindStates()
+    {
+        Container.Bind<PlayerActionCompleteState>().AsSingle().NonLazy();
+        Container.Bind<PlayerBetOrFoldState>().AsSingle().NonLazy();
+        Container.Bind<PlayerFreeChoiceState>().AsSingle().NonLazy();
+        Container.Bind<PlayerPassiveWaitState>().AsSingle().NonLazy();
         Container.Bind<DealingState>().AsSingle().NonLazy();
         Container.Bind<PreflopState>().AsSingle().NonLazy();
-        Container.Bind<DealStateMachine>().AsSingle();
+        Container.Bind<FlopState>().AsSingle().NonLazy();
+        Container.Bind<TurnState>().AsSingle().NonLazy();
+        Container.Bind<RiverState>().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<StateManager>().AsSingle();
+    }
+
+    private void BindStateMachines()
+    {
+        Container.Bind<DealStateMachine>().AsSingle();
+        Container.Bind<PlayerStateMachine>().AsSingle();
+
+
+    }
+    private void BindPlayer()
+    {
+
+    }
+
+
+
+
+
+    private void BindManagers()
+    {
+        Container.Bind<GameFlowManager>().FromInstance(gameFlowManager);
+    }
+    private void BindConfig()
+    {
+        Container.Bind<IHandTransformProvider>().FromInstance(managerHandsPositions);
+        Container.Bind<BlindRules>().FromInstance(new BlindRules(50, 100)).AsSingle();
+    }
+    private void BindViews()
+    {
         Container.Bind<PlayerView>().FromInstance(playerView);
         Container.Bind<BankView>().FromInstance(bankView);
         Container.Bind<AIPlayerView>().FromInstance(aIPlayerView);
-        Container.Bind<GameFlowManager>().FromInstance(gameFlowManager);
-        Container.Bind<IHandTransformProvider>().FromInstance(managerHandsPositions);
-        Container.Bind<IBank>().To<Bank>().AsSingle();
-        Container.Bind<DeckOfCard>().FromInstance(deckOfCard);
-        Container.Bind<Board>().FromInstance(board);
-        Container.BindInterfacesAndSelfTo<Player>().AsSingle();
+    }
+    private void BindPresenter()
+    {
+        Container.BindInterfacesAndSelfTo<AIPlayerPresenter>().AsSingle();
+        Container.BindInterfacesAndSelfTo<PlayerPresenter>().AsSingle();
+        Container.BindInterfacesAndSelfTo<BankPresenter>().AsSingle();
+    }
+    private void BindGameplayLogic()
+    {
         Container.BindInterfacesAndSelfTo<ReturnCards>().AsSingle();
         Container.BindInterfacesAndSelfTo<BlindsManager>().AsSingle();
+        Container.Bind<DeckOfCard>().FromInstance(deckOfCard);
+        Container.Bind<Board>().FromInstance(board);
+        Container.Bind<IBank>().To<Bank>().AsSingle();
+        Container.BindInterfacesAndSelfTo<Player>().AsSingle();
+        Container.BindInterfacesAndSelfTo<AIPlayer>().AsSingle();
         Container.BindInterfacesAndSelfTo<FeelingBoard>().AsSingle();
         Container.BindInterfacesAndSelfTo<FeelingHand>().AsSingle();
-        Container.BindInterfacesAndSelfTo<PlayerPresenter>().AsSingle();
-        Container.BindInterfacesAndSelfTo<AIPlayerPresenter>().AsSingle();
-        Container.BindInterfacesAndSelfTo<BankPresenter>().AsSingle();
-        Container.BindInterfacesAndSelfTo<AIPlayer>().AsSingle();
-        Container.Bind<BlindRules>().FromInstance(new BlindRules(50, 100)).AsSingle();
     }
+
 }

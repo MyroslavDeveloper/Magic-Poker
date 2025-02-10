@@ -4,6 +4,7 @@ using UnityEngine;
 public abstract class BasePlayer
 {
     public event Action<int> bettedChipts;
+
     [SerializeField] private Card[] startHand = new Card[2];
     [SerializeField] private int chips = 1000;
 
