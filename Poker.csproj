@@ -94,6 +94,7 @@
     <Compile Include="Assets\Magic Poker\Scripts\API\ReturnCards.cs" />
     <Compile Include="Assets\Magic Poker\Scripts\Object\Bank.cs" />
     <Compile Include="Assets\Magic Poker\Scripts\API\IChangeParentCard.cs" />
+    <Compile Include="Assets\Magic Poker\Scripts\StateMachine\ListsOfStates\PlayerPositionStates.cs" />
     <Compile Include="Assets\Magic Poker\Scripts\StateMachine\DealState\PreflopState.cs" />
     <Compile Include="Assets\Magic Poker\Scripts\Installers\GameInstallers.cs" />
     <Compile Include="Assets\Magic Poker\Scripts\View\AIPlayerView.cs" />

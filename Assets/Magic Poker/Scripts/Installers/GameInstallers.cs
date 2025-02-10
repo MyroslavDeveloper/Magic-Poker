@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Transactions;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 public class GameInstallers : MonoInstaller
@@ -12,6 +13,7 @@ public class GameInstallers : MonoInstaller
     [SerializeField] private PlayerView playerView;
     [SerializeField] private AIPlayerView aIPlayerView;
     [SerializeField] private ManagerHandsPositions managerHandsPositions;
+    [SerializeField] private Button actionCompletedButtun;
 
 
 
@@ -25,7 +27,7 @@ public class GameInstallers : MonoInstaller
         BindGameplayLogic();
         BindConfig();
         BindPresenter();
-        BindPlayer();
+
     }
 
     private void BindStates()
@@ -49,14 +51,6 @@ public class GameInstallers : MonoInstaller
 
 
     }
-    private void BindPlayer()
-    {
-
-    }
-
-
-
-
 
     private void BindManagers()
     {
@@ -65,6 +59,7 @@ public class GameInstallers : MonoInstaller
     private void BindConfig()
     {
         Container.Bind<IHandTransformProvider>().FromInstance(managerHandsPositions);
+        Container.Bind<Button>().FromInstance(actionCompletedButtun);
         Container.Bind<BlindRules>().FromInstance(new BlindRules(50, 100)).AsSingle();
     }
     private void BindViews()
