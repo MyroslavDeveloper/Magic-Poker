@@ -6,20 +6,25 @@ using Zenject;
 public class StateManager : IInitializable
 {
     [Inject] private DealStateMachine dealStateMachine;
-    [Inject] private PlayerStateMachine playerStateMachine;
+    [Inject] private Player player;
+    [Inject] private AIPlayer aiPlayer;
     [Inject] private Button buttonActionCompleted;
 
     public void Initialize()
     {
-        dealStateMachine.EnterState(DealStates.DealingCards);
-        playerStateMachine.EnterState(PlayerStates.PassiveWait);
+        //  dealStateMachine.EnterState(DealStates.DealingCards);
+        dealStateMachine.InitializeQueue(dealStateMachine.states.Keys);
+        dealStateMachine.StartNextState();
+
+        // player.playerStateMachine.EnterState(PlayerStates.PassiveWait);
+        // aiPlayer.playerStateMachine.EnterState(PlayerStates.PassiveWait);
         buttonActionCompleted.onClick.AddListener(ActionCompleted);
 
     }
 
     private void ActionCompleted()
     {
-        playerStateMachine.ChangeState(PlayerStates.ActionCompleted);
+        dealStateMachine.StartNextState();
     }
 
 }

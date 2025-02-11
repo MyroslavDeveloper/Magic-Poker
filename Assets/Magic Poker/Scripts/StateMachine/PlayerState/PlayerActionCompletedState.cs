@@ -8,7 +8,7 @@ public class PlayerActionCompleteState : State
     public override void Enter()
     {
         Debug.Log("Enter PlayerActionCompleteState State");
-        dealStateMachine.ChangeState(DealStates.Flop);
+
     }
 
     public override void Exit()

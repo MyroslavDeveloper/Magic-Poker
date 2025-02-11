@@ -4,7 +4,6 @@ using Zenject;
 
 public class DealStateMachine : StateMachine<DealStates>
 {
-
     [Inject] private DealingState dealingState;
     [Inject] private PreflopState preflopState;
     [Inject] private FlopState flopState;
@@ -21,6 +20,11 @@ public class DealStateMachine : StateMachine<DealStates>
         states.Add(DealStates.Turn, turnState);
         states.Add(DealStates.River, riverState);
     }
+    public void OnStateCompleted()
+    {
+        StartNextState(); // Запускаем следующее состояние
+    }
+
 }
 
 

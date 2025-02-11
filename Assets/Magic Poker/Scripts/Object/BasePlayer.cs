@@ -1,13 +1,15 @@
 using System;
 using UnityEngine;
+using Zenject;
 
 public abstract class BasePlayer
 {
     public event Action<int> bettedChipts;
 
-    [SerializeField] private Card[] startHand = new Card[2];
-    [SerializeField] private int chips = 1000;
-
+    private Card[] startHand = new Card[2];
+    private int chips = 1000;
+    public PlayerStateMachine playerStateMachine { get; private set; }
+    [Inject] private DiContainer diContainer;
     public virtual void SetStartHand(Card[] cards)
     {
         Array.Copy(cards, startHand, cards.Length);
@@ -34,5 +36,10 @@ public abstract class BasePlayer
     public void AddChips(int amount) => chips += amount;
 
     public int GetChips() => chips;
+    [Inject]
+    public void Cointainer()
+    {
+        playerStateMachine = diContainer.Instantiate<PlayerStateMachine>();
+    }
 }
 
