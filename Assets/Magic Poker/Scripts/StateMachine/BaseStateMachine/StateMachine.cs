@@ -49,7 +49,7 @@ public abstract class StateMachine<TState> where TState : Enum
         // Этот метод будет переопределяться в наследниках
     }
 
-    private void RestartRound()
+    public void RestartRound()
     {
         // Уведомляем GameFlowManager о начале нового раунда
 

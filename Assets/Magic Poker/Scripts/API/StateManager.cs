@@ -8,10 +8,15 @@ public class StateManager : IInitializable
     [Inject] private PlayerPositionStateMachine playerPositionStateMachine;
     [Inject] private Player player;
     [Inject] private AIPlayer aiPlayer;
+    [Inject] private PlayerView playerView;
     [Inject] private Button buttonActionCompleted;
     [Inject] private GameFlowManager gameFlowManager;
     private bool isFirstDealer;
 
+    private void ChangeStatePlayer(int a)
+    {
+        player.playerStateMachine.ChangeState(PlayerStates.ActionCompleted);
+    }
     private void AssignPlayerPositionsChange()
     {
         if (isFirstDealer)
@@ -38,6 +43,7 @@ public class StateManager : IInitializable
 
     public void Initialize()
     {
+        playerView.OnBetPressed += ChangeStatePlayer;
         dealStateMachine.InitializeQueue(dealStateMachine.states.Keys);
         playerPositionStateMachine.AssignPositions();
         AssignPlayerPositions();
