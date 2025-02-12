@@ -32,6 +32,12 @@ public class GameInstallers : MonoInstaller
 
     private void BindStates()
     {
+        Container.Bind<CutoffPositionState>().AsSingle().NonLazy();
+        Container.Bind<MiddlePositionState>().AsSingle().NonLazy();
+        Container.Bind<UnderTheGunPositionState>().AsSingle().NonLazy();
+        Container.Bind<BigBlindPositionState>().AsSingle().NonLazy();
+        Container.Bind<SmallBlindPositionState>().AsSingle().NonLazy();
+        Container.Bind<ButtonPositionState>().AsSingle().NonLazy();
         Container.Bind<PlayerActionCompleteState>().AsSingle().NonLazy();
         Container.Bind<PlayerBetOrFoldState>().AsSingle().NonLazy();
         Container.Bind<PlayerFreeChoiceState>().AsSingle().NonLazy();
@@ -48,6 +54,7 @@ public class GameInstallers : MonoInstaller
     {
         Container.Bind<DealStateMachine>().AsSingle();
         Container.Bind<PlayerStateMachine>().AsSingle();
+        Container.Bind<PlayerPositionStateMachine>().AsSingle();
 
 
     }

@@ -9,6 +9,7 @@ public abstract class BasePlayer
     private Card[] startHand = new Card[2];
     private int chips = 1000;
     public PlayerStateMachine playerStateMachine { get; private set; }
+    public PlayerPositionStateMachine playerPositionStateMachine { get; private set; }
     [Inject] private DiContainer diContainer;
     public virtual void SetStartHand(Card[] cards)
     {
@@ -40,6 +41,8 @@ public abstract class BasePlayer
     public void Cointainer()
     {
         playerStateMachine = diContainer.Instantiate<PlayerStateMachine>();
+        playerPositionStateMachine = diContainer.Instantiate<PlayerPositionStateMachine>();
+
     }
 }
 
