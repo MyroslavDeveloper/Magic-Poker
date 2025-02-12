@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1521.6
     height: 766.4
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Console
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -326,7 +326,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Magic Poker/Scripts/View
+    - Assets/Magic Poker/Scripts/StateMachine/PlayerPositionStates
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -336,16 +336,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Magic Poker/Scripts/View
+  - Assets/Magic Poker/Scripts/StateMachine/PlayerPositionStates
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\ProjectsUnity\Magic Poker
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 171.59998}
-    m_SelectedIDs: ccbd0000
-    m_LastClickedID: 48588
-    m_ExpandedIDs: 0000000064bd000066bd000068bd00006abd0000
+    scrollPos: {x: 0, y: 139.59998}
+    m_SelectedIDs: 12be0000
+    m_LastClickedID: 48658
+    m_ExpandedIDs: 0000000080bd000082bd000084bd000086bd0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -374,7 +374,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000064bd000066bd000068bd00006abd0000
+    m_ExpandedIDs: 0000000080bd000082bd000084bd000086bd0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -400,9 +400,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: ccbd0000
-    m_LastClickedInstanceID: 48588
-    m_HadKeyboardFocusLastEvent: 0
+    m_SelectedInstanceIDs: febd0000
+    m_LastClickedInstanceID: 48638
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c62300001eb2000022b20000f4b1000020b20000bac40000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -522,7 +522,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: b0f5ffff0cfbffff76b9000086b90000
+      m_ExpandedIDs: 0cfbffff9cb90000feb90000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 

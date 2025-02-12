@@ -83,6 +83,7 @@
     <Compile Include="Assets\Magic Poker\Scripts\Object\PlayerFactory.cs" />
     <Compile Include="Assets\Magic Poker\Scripts\StateMachine\BaseStateMachine\StateMachine.cs" />
     <Compile Include="Assets\Magic Poker\Scripts\StateMachine\StateMachines\PlayerStateMachine.cs" />
+    <Compile Include="Assets\Magic Poker\Scripts\GameStateReseter\GameStateReseterManager .cs" />
     <Compile Include="Assets\Magic Poker\Scripts\API\DealingCards.cs" />
     <Compile Include="Assets\Magic Poker\Scripts\StateMachine\DealState\TurnState.cs" />
     <Compile Include="Assets\Magic Poker\Scripts\Shuffler.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="Assets\Magic Poker\Scripts\View\BankView.cs" />
     <Compile Include="Assets\Magic Poker\Scripts\StateMachine\PlayerState\PlayerBetOrFoldState.cs" />
     <Compile Include="Assets\Magic Poker\Scripts\StateMachine\PlayerPositionStates\ButtonPositionState.cs" />
+    <Compile Include="Assets\Magic Poker\Scripts\GameStateReseter\GameStateReseter.cs" />
     <Compile Include="Assets\Magic Poker\Scripts\StateMachine\ListsOfStates\DealStates.cs" />
     <Compile Include="Assets\Magic Poker\Scripts\Object\BasePlayer.cs" />
     <Compile Include="Assets\Magic Poker\Scripts\API\DeckOfCard.cs" />
