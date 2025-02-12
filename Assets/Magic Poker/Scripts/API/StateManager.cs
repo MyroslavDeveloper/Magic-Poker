@@ -9,17 +9,31 @@ public class StateManager : IInitializable
     [Inject] private Player player;
     [Inject] private AIPlayer aiPlayer;
     [Inject] private Button buttonActionCompleted;
+    [Inject] private GameFlowManager gameFlowManager;
+    private bool isFirstDealer;
 
+    private void AssignPlayerPositionsChange()
+    {
+        if (isFirstDealer)
+        {
+            player.playerPositionStateMachine.ChangeState(PlayerPositionStates.SmallBlind);
+            aiPlayer.playerPositionStateMachine.ChangeState(PlayerPositionStates.BigBlind);
+            Debug.Log("pSB");
+        }
+        else
+        {
+            player.playerPositionStateMachine.ChangeState(PlayerPositionStates.BigBlind);
+            aiPlayer.playerPositionStateMachine.ChangeState(PlayerPositionStates.SmallBlind);
+            Debug.Log("pBB");
+        }
+
+        isFirstDealer = !isFirstDealer;
+    }
     private void AssignPlayerPositions()
     {
-
-        var positions = playerPositionStateMachine.GetAssignedPositions();
-
-        if (positions.Count >= 2)
-        {
-            player.playerPositionStateMachine.EnterState(positions[0]);
-            aiPlayer.playerPositionStateMachine.EnterState(positions[1]);
-        }
+        player.playerPositionStateMachine.EnterState(PlayerPositionStates.SmallBlind);
+        aiPlayer.playerPositionStateMachine.EnterState(PlayerPositionStates.BigBlind);
+        Debug.Log("pSB");
     }
 
     public void Initialize()
@@ -31,6 +45,7 @@ public class StateManager : IInitializable
         player.playerStateMachine.EnterState(PlayerStates.PassiveWait);
         aiPlayer.playerStateMachine.EnterState(PlayerStates.PassiveWait);
         buttonActionCompleted.onClick.AddListener(ActionCompleted);
+        gameFlowManager.NextDeal += AssignPlayerPositionsChange;
     }
 
     private void ActionCompleted()

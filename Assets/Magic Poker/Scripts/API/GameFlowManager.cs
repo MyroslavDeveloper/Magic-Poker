@@ -15,7 +15,7 @@ public class GameFlowManager : MonoBehaviour
     {
         returnCards.ReturnAllCards();
         NextDeal?.Invoke();
-        StartNewRound();
+        //   StartNewRound();
     }
     private void StartNewRound()
     {

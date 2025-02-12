@@ -22,6 +22,7 @@ public class DealStateMachine : StateMachine<DealStates>
     }
     public void OnStateCompleted()
     {
+
         StartNextState(); // Запускаем следующее состояние
     }
 

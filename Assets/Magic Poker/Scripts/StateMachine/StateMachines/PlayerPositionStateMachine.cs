@@ -56,4 +56,10 @@ public class PlayerPositionStateMachine : StateMachine<PlayerPositionStates>
     {
         return assignedPositions;
     }
+
+    // Переопределяем метод для вызова перед следующим раундом
+    protected override void ResetStateBeforeNextRound()
+    {
+        AssignPositions(); // Вызываем перераспределение позиций
+    }
 }
