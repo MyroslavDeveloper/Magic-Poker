@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class BlindsManager : IDisposable, IInitializable
+public class BlindsManager : IInitializable
 {
     public event Action OnBlinding;
     private List<BasePlayer> players = new();
@@ -12,22 +12,18 @@ public class BlindsManager : IDisposable, IInitializable
     [Inject] private BlindRules blindRules;
     [Inject] private Player player;
     [Inject] private AIPlayer aiPlayer;
-    [Inject] private GameFlowManager gameFlowManager;
 
-    public void Dispose()
-    {
-        gameFlowManager.NextDeal -= AssignBlinds;
-    }
+    [Inject]
     public void Initialize()
     {
-        gameFlowManager.NextDeal += AssignBlinds;
         AddPlayers();
     }
     public void AssignBlinds()
     {
+        Debug.Log(players.Count);
 
         if (players.Count < 2) return;
-
+        Debug.Log("Enter BlindManager");
         BasePlayer smallBlindPlayer = players[currentSmallBlindIndex];
         BasePlayer bigBlindPlayer = players[currentBigBlindIndex];
 
@@ -38,6 +34,7 @@ public class BlindsManager : IDisposable, IInitializable
 
 
         int bigBlindBet = Math.Min(bigBlindPlayer.GetChips(), blindRules.BigBlind);
+        Debug.Log(bigBlindBet);
         bigBlindPlayer.BetChips(bigBlindBet);
 
         OnBlinding?.Invoke();

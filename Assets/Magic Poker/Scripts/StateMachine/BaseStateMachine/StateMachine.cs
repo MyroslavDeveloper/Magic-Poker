@@ -7,8 +7,8 @@ public abstract class StateMachine<TState> where TState : Enum
 {
     protected Queue<TState> stateQueue = new();
     public Dictionary<TState, State> states = new();
-    protected State current;
-    private List<TState> initialStates; // Сохраняем исходные состояния
+    public State current { get; private set; }
+    private List<TState> initialStates;
     [Inject] protected GameFlowManager gameFlowManager;
 
     [Inject]
@@ -17,7 +17,7 @@ public abstract class StateMachine<TState> where TState : Enum
     public void InitializeQueue(IEnumerable<TState> orderedStates)
     {
         stateQueue.Clear();
-        initialStates = new List<TState>(orderedStates); // Сохраняем порядок для перезапуска
+        initialStates = new List<TState>(orderedStates);
         foreach (var state in orderedStates)
         {
             stateQueue.Enqueue(state);
@@ -43,20 +43,11 @@ public abstract class StateMachine<TState> where TState : Enum
             RestartRound();
         }
     }
-
-    protected virtual void ResetStateBeforeNextRound()
-    {
-        // Этот метод будет переопределяться в наследниках
-    }
-
     public void RestartRound()
     {
-        // Уведомляем GameFlowManager о начале нового раунда
-
-        ResetStateBeforeNextRound(); // Вызываем метод наследника для перезапуска позиций
         gameFlowManager.NextRound();
-        InitializeQueue(initialStates); // Загружаем состояния заново
-        StartNextState(); // Запускаем первый этап нового круга
+        InitializeQueue(initialStates);
+        StartNextState();
     }
 
     public void EnterState(TState stateKey)

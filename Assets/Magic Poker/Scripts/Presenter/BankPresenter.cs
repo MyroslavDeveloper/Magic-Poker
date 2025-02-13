@@ -24,7 +24,7 @@ public class BankPresenter : IDisposable, IInitializable
         aiPlayer.bettedChipts -= AddChips;
 
     }
-
+    [Inject]
     public void Initialize()
     {
         player.bettedChipts += AddChips;
