@@ -83,6 +83,7 @@ public class GameInstallers : MonoInstaller
     }
     private void BindGameplayLogic()
     {
+        Container.Bind<PokerHandEvaluator>().AsSingle();
         Container.BindInterfacesAndSelfTo<ReturnCards>().AsSingle();
         Container.BindInterfacesAndSelfTo<BlindsManager>().AsSingle();
         Container.Bind<DeckOfCard>().FromInstance(deckOfCard);

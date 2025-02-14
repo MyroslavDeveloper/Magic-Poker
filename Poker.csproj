@@ -74,6 +74,8 @@
     <Compile Include="Assets\Magic Poker\Scripts\StateMachine\PlayerPositionStates\SmallBlindPositionState.cs" />
     <Compile Include="Assets\Magic Poker\Scripts\StateMachine\PlayerPositionStates\CutoffPositionState.cs" />
     <Compile Include="Assets\Magic Poker\Scripts\StateMachine\PlayerState\PlayerFreeChoiceState.cs" />
+    <Compile Include="Assets\Magic Poker\Scripts\API\PokerGame.cs" />
+    <Compile Include="Assets\Magic Poker\Scripts\API\PokerHandEvaluator.cs" />
     <Compile Include="Assets\Magic Poker\Scripts\Object\AIPlayer.cs" />
     <Compile Include="Assets\Magic Poker\Scripts\API\FeelingBoard.cs" />
     <Compile Include="Assets\Magic Poker\Scripts\Presenter\AIPlayerPresenter.cs" />

@@ -9,7 +9,7 @@ public class AIPlayer : BasePlayer
 
         foreach (var card in GetStartHand())
         {
-            card.SetBackSide(true);
+            //  card.SetBackSide(true);
         }
     }
 }
