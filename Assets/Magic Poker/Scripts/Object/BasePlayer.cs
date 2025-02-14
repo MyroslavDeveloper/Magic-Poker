@@ -23,13 +23,14 @@ public abstract class BasePlayer
     {
         if (amount > chips)
         {
-
             return;
         }
         chips -= amount;
-        Debug.Log(amount);
-        bettedChipts?.Invoke(amount);
+        Debug.Log($"Игрок {this} поставил {amount} в банк"); // ✅ Проверим, сколько раз вызывается
+
+        bettedChipts?.Invoke(amount); // ✅ Посмотри, кто подписан на это событие
     }
+
     public void ClearStartHand()
     {
         Array.Clear(startHand, 0, startHand.Length);

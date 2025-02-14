@@ -14,6 +14,7 @@ public class GameInstallers : MonoInstaller
     [SerializeField] private AIPlayerView aIPlayerView;
     [SerializeField] private ManagerHandsPositions managerHandsPositions;
     [SerializeField] private Button actionCompletedButtun;
+    [SerializeField] private PokerGame pokerGame;
 
 
 
@@ -87,6 +88,7 @@ public class GameInstallers : MonoInstaller
         Container.BindInterfacesAndSelfTo<ReturnCards>().AsSingle();
         Container.BindInterfacesAndSelfTo<BlindsManager>().AsSingle();
         Container.Bind<DeckOfCard>().FromInstance(deckOfCard);
+        Container.Bind<PokerGame>().FromInstance(pokerGame);
         Container.Bind<Board>().FromInstance(board);
         Container.Bind<IBank>().To<Bank>().AsSingle();
         Container.BindInterfacesAndSelfTo<Player>().AsSingle();

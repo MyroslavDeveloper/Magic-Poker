@@ -23,7 +23,6 @@ public class BlindsManager : IInitializable
         Debug.Log(players.Count);
 
         if (players.Count < 2) return;
-        Debug.Log("Enter BlindManager");
         BasePlayer smallBlindPlayer = players[currentSmallBlindIndex];
         BasePlayer bigBlindPlayer = players[currentBigBlindIndex];
 
@@ -34,7 +33,6 @@ public class BlindsManager : IInitializable
 
 
         int bigBlindBet = Math.Min(bigBlindPlayer.GetChips(), blindRules.BigBlind);
-        Debug.Log(bigBlindBet);
         bigBlindPlayer.BetChips(bigBlindBet);
 
         OnBlinding?.Invoke();

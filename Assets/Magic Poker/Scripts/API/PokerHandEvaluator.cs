@@ -39,6 +39,7 @@ public class PokerHandEvaluator
         if (IsOnePair(hand)) return 2;
         return 1;
     }
+
     public string GetHandName(List<Card> hand)
     {
         if (hand == null || hand.Count < 5) return "Нет комбинации";
@@ -61,11 +62,27 @@ public class PokerHandEvaluator
 
     private bool IsStraight(List<Card> hand)
     {
-        var ordered = hand.Select(c => (int)c.CardData.rank).Distinct().OrderBy(v => v).ToList();
-        for (int i = 0; i <= ordered.Count - 5; i++)
+        var cardRanks = hand.Select(c => (int)c.CardData.rank).Distinct().OrderBy(rank => rank).ToList();
+
+        // Проверяем обычный стрит
+        for (int i = 0; i <= cardRanks.Count - 5; i++)
         {
-            if (ordered[i] + 4 == ordered[i + 4]) return true;
+            if (cardRanks[i] + 1 == cardRanks[i + 1] &&
+                cardRanks[i + 1] + 1 == cardRanks[i + 2] &&
+                cardRanks[i + 2] + 1 == cardRanks[i + 3] &&
+                cardRanks[i + 3] + 1 == cardRanks[i + 4])
+            {
+                return true;
+            }
         }
+
+        // Проверяем "колесо" (A-2-3-4-5)
+        if (cardRanks.Contains(14) && cardRanks.Contains(2) && cardRanks.Contains(3) &&
+            cardRanks.Contains(4) && cardRanks.Contains(5))
+        {
+            return true;
+        }
+
         return false;
     }
 
@@ -104,4 +121,6 @@ public class PokerHandEvaluator
     {
         return hand.GroupBy(c => c.CardData.rank).Any(g => g.Count() == 2);
     }
+
+
 }

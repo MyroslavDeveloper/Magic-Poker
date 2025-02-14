@@ -1,14 +1,19 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
 public class PokerGame : MonoBehaviour
 {
+    public event Action CheckedWiner;
     [Inject] private Player player;
     [Inject] private AIPlayer aiPlayer;
+    [Inject] private PlayerPresenter playerPresenter;
+    [Inject] private AIPlayerPresenter aiPlayerPresenter;
     [Inject] private Board board;
     [Inject] private List<BasePlayer> players;
     [Inject] private PokerHandEvaluator pokerHandEvaluator;
+    [Inject] private IBank bank;
 
     [Inject]
     public void Initialize()
@@ -45,6 +50,15 @@ public class PokerGame : MonoBehaviour
         }
 
         Debug.Log($"🏆 Победитель: {bestPlayer} с комбинацией: {bestHandName}");
+        if (bestPlayer == player)
+        {
+            playerPresenter.AddChips(bank.chips);
+        }
+        else
+        {
+            aiPlayerPresenter.AddChips(bank.chips);
+        }
+        CheckedWiner?.Invoke();
     }
 
     private void AddPlayers()

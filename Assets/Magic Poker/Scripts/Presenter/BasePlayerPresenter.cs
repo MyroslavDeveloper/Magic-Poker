@@ -21,7 +21,11 @@ public abstract class BasePlayerPresenter<TPlayer, TView> : IDisposable, IInitia
         gameFlowManager.NextDeal -= UpdateView;
         blindsManager.OnBlinding -= UpdateView;
     }
-
+    public void AddChips(int amount)
+    {
+        player.AddChips(amount);
+        UpdateView();
+    }
     public virtual void Initialize()
     {
         blindsManager.OnBlinding += UpdateView;

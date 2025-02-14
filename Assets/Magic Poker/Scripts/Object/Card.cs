@@ -5,7 +5,7 @@ public class Card : MonoBehaviour
 {
     [SerializeField] private Image frontSide;
     [SerializeField] private Image backSide;
-    public CardData CardData { get; private set; }
+    public CardData CardData { get; set; }
 
     public void SetCardData(CardData data)
     {
