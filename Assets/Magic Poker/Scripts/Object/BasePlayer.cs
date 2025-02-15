@@ -2,33 +2,44 @@ using System;
 using UnityEngine;
 using Zenject;
 
-public abstract class BasePlayer
+public abstract class BasePlayer : IPlayer
 {
+    public event Action playerTurnCompleted;
     public event Action<int> bettedChipts;
+    public bool MakeTurn { get; private set; }
 
+    public int TolalBet { get; private set; }
     private Card[] startHand = new Card[2];
     private int chips = 1000;
-    public PlayerStateMachine playerStateMachine { get; private set; }
-    public PlayerPositionStateMachine playerPositionStateMachine { get; private set; }
+
     [Inject] private DiContainer diContainer;
     public virtual void SetStartHand(Card[] cards)
     {
         Array.Copy(cards, startHand, cards.Length);
     }
 
+    public void PlayerTurned()
+    {
+        MakeTurn = true;
+        playerTurnCompleted?.Invoke();
+    }
 
     public Card[] GetStartHand() => startHand;
 
-    public virtual void BetChips(int amount)
+    public virtual void BetChips(int amount, bool isBlind)
     {
         if (amount > chips)
         {
             return;
         }
         chips -= amount;
-        Debug.Log($"Игрок {this} поставил {amount} в банк"); // ✅ Проверим, сколько раз вызывается
-
-        bettedChipts?.Invoke(amount); // ✅ Посмотри, кто подписан на это событие
+        Debug.Log($"Игрок {this} поставил {amount} в банк");
+        bettedChipts?.Invoke(amount);
+        TolalBet += amount;
+        if (!isBlind)
+        {
+            PlayerTurned();
+        }
     }
 
     public void ClearStartHand()
@@ -36,14 +47,6 @@ public abstract class BasePlayer
         Array.Clear(startHand, 0, startHand.Length);
     }
     public void AddChips(int amount) => chips += amount;
-
     public int GetChips() => chips;
-    [Inject]
-    public void Cointainer()
-    {
-        playerStateMachine = diContainer.Instantiate<PlayerStateMachine>();
-        playerPositionStateMachine = diContainer.Instantiate<PlayerPositionStateMachine>();
-
-    }
 }
 

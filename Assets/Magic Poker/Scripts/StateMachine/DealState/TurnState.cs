@@ -11,7 +11,7 @@ public class TurnState : State
     public override void Enter()
     {
         feelingBoard.FeelTurn();
-        player.playerStateMachine.EnterState(PlayerStates.PassiveWait);
+
         Debug.Log("Enter Turn State");
     }
 

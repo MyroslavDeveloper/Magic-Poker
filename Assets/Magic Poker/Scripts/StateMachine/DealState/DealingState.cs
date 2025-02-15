@@ -6,15 +6,14 @@ public class DealingState : State
     public bool DealingStateCompleted { get; private set; }
     [Inject] private BlindsManager blindsManager;
     [Inject] private FeelingHand feelingHand;
-    [Inject] private FeelingBoard feelingBoard;
-    [Inject] private ReturnCards returnCards;
-    [Inject] private DealStateMachine dealStateMachine;
+    [Inject] private PlayersTurnController playersTurnController;
 
 
     public override void Enter()
     {
         blindsManager.AssignBlinds();
         feelingHand.DealStartingHands();
+        playersTurnController.StartTurnPlayer();
         Debug.Log("Enter Dealing State");
     }
 

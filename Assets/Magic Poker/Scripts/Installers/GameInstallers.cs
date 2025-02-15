@@ -33,16 +33,6 @@ public class GameInstallers : MonoInstaller
 
     private void BindStates()
     {
-        Container.Bind<CutoffPositionState>().AsSingle().NonLazy();
-        Container.Bind<MiddlePositionState>().AsSingle().NonLazy();
-        Container.Bind<UnderTheGunPositionState>().AsSingle().NonLazy();
-        Container.Bind<BigBlindPositionState>().AsSingle().NonLazy();
-        Container.Bind<SmallBlindPositionState>().AsSingle().NonLazy();
-        Container.Bind<ButtonPositionState>().AsSingle().NonLazy();
-        Container.Bind<PlayerActionCompleteState>().AsSingle().NonLazy();
-        Container.Bind<PlayerBetOrFoldState>().AsSingle().NonLazy();
-        Container.Bind<PlayerFreeChoiceState>().AsSingle().NonLazy();
-        Container.Bind<PlayerPassiveWaitState>().AsSingle().NonLazy();
         Container.Bind<DealingState>().AsSingle().NonLazy();
         Container.Bind<PreflopState>().AsSingle().NonLazy();
         Container.Bind<FlopState>().AsSingle().NonLazy();
@@ -54,9 +44,6 @@ public class GameInstallers : MonoInstaller
     private void BindStateMachines()
     {
         Container.Bind<DealStateMachine>().AsSingle();
-        Container.Bind<PlayerStateMachine>().AsSingle();
-        Container.Bind<PlayerPositionStateMachine>().AsSingle();
-
 
     }
 
@@ -85,6 +72,7 @@ public class GameInstallers : MonoInstaller
     private void BindGameplayLogic()
     {
         Container.Bind<PokerHandEvaluator>().AsSingle();
+        Container.Bind<PlayersTurnController>().AsSingle();
         Container.BindInterfacesAndSelfTo<ReturnCards>().AsSingle();
         Container.BindInterfacesAndSelfTo<BlindsManager>().AsSingle();
         Container.Bind<DeckOfCard>().FromInstance(deckOfCard);

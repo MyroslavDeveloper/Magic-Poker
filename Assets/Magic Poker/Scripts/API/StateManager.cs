@@ -13,19 +13,11 @@ public class StateManager : IInitializable
 
 
 
-    private void ChangeStatePlayer(int a)
-    {
-        player.playerStateMachine.ChangeState(PlayerStates.ActionCompleted);
-    }
 
     public void Initialize()
     {
-        playerView.OnBetPressed += ChangeStatePlayer;
         dealStateMachine.InitializeQueue(dealStateMachine.states.Keys);
         dealStateMachine.StartNextState();
-        player.playerStateMachine.EnterState(PlayerStates.PassiveWait);
-        aiPlayer.playerStateMachine.EnterState(PlayerStates.PassiveWait);
-
         buttonActionCompleted.onClick.AddListener(ActionCompleted);
     }
 

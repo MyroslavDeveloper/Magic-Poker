@@ -10,18 +10,24 @@ public class GameFlowManager : MonoBehaviour
     [Inject] private FeelingBoard feelingBoard;
     [Inject] private FeelingHand feelingHand;
     [Inject] private ReturnCards returnCards;
+    [Inject] private Player player;
+    [Inject] private AIPlayer AIplayer;
 
 
     public void NextRound()
     {
+
         returnCards.ReturnAllCards();
         NextDeal?.Invoke();
     }
+
     private void StartNewRound()
     {
+
         feelingHand.DealStartingHands();
         feelingBoard.FeelFlop();
         feelingBoard.FeelTurn();
         feelingBoard.FeelRiver();
     }
+
 }

@@ -10,7 +10,6 @@ public class RiverState : State
     public override void Enter()
     {
         feelingBoard.FeelRiver();
-        player.playerStateMachine.EnterState(PlayerStates.PassiveWait);
         Debug.Log("Enter River State");
     }
 

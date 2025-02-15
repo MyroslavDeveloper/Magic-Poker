@@ -31,6 +31,7 @@ public abstract class BasePlayerPresenter<TPlayer, TView> : IDisposable, IInitia
         blindsManager.OnBlinding += UpdateView;
         gameFlowManager.NextDeal += UpdateView;
         UpdateView();
+
         // OnInitialize();
     }
     protected virtual void OnInitialize()

@@ -3,52 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class BlindsManager : IInitializable
+public class BlindsManager
 {
     public event Action OnBlinding;
-    private List<BasePlayer> players = new();
     private int currentSmallBlindIndex = 0;
     private int currentBigBlindIndex = 1;
     [Inject] private BlindRules blindRules;
-    [Inject] private Player player;
-    [Inject] private AIPlayer aiPlayer;
+    [Inject] private IPlayer[] players;
 
-    [Inject]
-    public void Initialize()
-    {
-        AddPlayers();
-    }
+
+
     public void AssignBlinds()
     {
-        Debug.Log(players.Count);
+        if (players.Length < 2)
+        {
+            Debug.Log("List players = 0"); return;
+        }
+        IPlayer smallBlindPlayer = players[currentSmallBlindIndex];
 
-        if (players.Count < 2) return;
-        BasePlayer smallBlindPlayer = players[currentSmallBlindIndex];
-        BasePlayer bigBlindPlayer = players[currentBigBlindIndex];
+        IPlayer bigBlindPlayer = players[currentBigBlindIndex];
 
 
         int smallBlindBet = Math.Min(smallBlindPlayer.GetChips(), blindRules.SmallBlind);
-        smallBlindPlayer.BetChips(smallBlindBet);
-
-
-
+        smallBlindPlayer.BetChips(smallBlindBet, true);
         int bigBlindBet = Math.Min(bigBlindPlayer.GetChips(), blindRules.BigBlind);
-        bigBlindPlayer.BetChips(bigBlindBet);
+        bigBlindPlayer.BetChips(bigBlindBet, true);
 
         OnBlinding?.Invoke();
         MoveBlinds();
     }
 
-    private void AddPlayers()
-    {
-        players.Add(player);
-        players.Add(aiPlayer);
-    }
-
     private void MoveBlinds()
     {
-        currentSmallBlindIndex = (currentSmallBlindIndex + 1) % players.Count;
-        currentBigBlindIndex = (currentBigBlindIndex + 1) % players.Count;
+        currentSmallBlindIndex = (currentSmallBlindIndex + 1) % players.Length;
+        currentBigBlindIndex = (currentBigBlindIndex + 1) % players.Length;
     }
 
 

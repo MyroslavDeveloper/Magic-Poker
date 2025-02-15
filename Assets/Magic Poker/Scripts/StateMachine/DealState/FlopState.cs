@@ -12,7 +12,7 @@ public class FlopState : State
     public override void Enter()
     {
         feelingBoard.FeelFlop();
-        player.playerStateMachine.EnterState(PlayerStates.PassiveWait);
+
     }
 
     public override void Exit()

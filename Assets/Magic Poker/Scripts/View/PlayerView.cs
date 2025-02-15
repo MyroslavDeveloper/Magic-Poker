@@ -7,11 +7,21 @@ public class PlayerView : MonoBehaviour, IChipsView
     [SerializeField] private TMP_Text chipsText;
     [SerializeField] private TMP_InputField betInputField;
     [SerializeField] private Button betButton;
+    [SerializeField] private Button checkButton;
+    [SerializeField] private Button callButton;
+    [SerializeField] private Player player;
+
     public event System.Action<int> OnBetPressed;
+    public event System.Action OnCheckPressed;
+    public event System.Action<int> OnCallPressed;
+
+
 
     private void Start()
     {
         betButton.onClick.AddListener(HandleBetButton);
+        checkButton.onClick.AddListener(HandleCheckButton);
+        callButton.onClick.AddListener(HandleCallButton);
     }
 
     private void HandleBetButton()
@@ -22,8 +32,25 @@ public class PlayerView : MonoBehaviour, IChipsView
         }
         else
         {
-            Debug.LogWarning("Dont Enaf Money!");
+            Debug.LogWarning("Not Enough Money!");
         }
+    }
+
+    private void HandleCheckButton()
+    {
+        if (player.TolalBet == 0)
+        {
+            OnCheckPressed?.Invoke();
+        }
+        else
+        {
+            Debug.LogWarning("Can't check when there's a bet!");
+        }
+    }
+
+    private void HandleCallButton()
+    {
+        OnCallPressed?.Invoke(player.TolalBet);
     }
 
     public void UpdateChipsDisplay(int chips)
