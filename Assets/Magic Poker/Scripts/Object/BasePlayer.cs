@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using Zenject;
 
-public abstract class BasePlayer : IPlayer
+public abstract class BasePlayer : IPlayer, IInitializable
 {
     public event Action playerTurnCompleted;
     public event Action<int> bettedChipts;
@@ -12,7 +12,12 @@ public abstract class BasePlayer : IPlayer
     private Card[] startHand = new Card[2];
     private int chips = 1000;
 
-    [Inject] private DiContainer diContainer;
+    [Inject] private DealStateMachine dealStateMachine;
+    public void Initialize()
+    {
+        dealStateMachine.Dealing += ClearTurned;
+        dealStateMachine.Dealing += ClearTotalBet;
+    }
     public virtual void SetStartHand(Card[] cards)
     {
         Array.Copy(cards, startHand, cards.Length);
@@ -62,5 +67,7 @@ public abstract class BasePlayer : IPlayer
     }
     public void AddChips(int amount) => chips += amount;
     public int GetChips() => chips;
+
+
 }
 

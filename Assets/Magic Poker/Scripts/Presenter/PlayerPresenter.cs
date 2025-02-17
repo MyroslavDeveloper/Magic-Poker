@@ -27,11 +27,6 @@ public class PlayerPresenter : BasePlayerPresenter<Player, PlayerView>
         aiPlayerPresenter.AddChips(bank.chips);
         dealStateMachine.RestartRound();
         playersTurnController.ChangePlayer();
-        foreach (var player in players)
-        {
-            player.ClearTotalBet();
-            player.ClearTurned();
-        }
         UpdateView();
     }
     public void HandleCheck()
