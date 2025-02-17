@@ -9,10 +9,13 @@ public class AIPlayerView : MonoBehaviour, IChipsView
     [SerializeField] private Button betButton;
     [SerializeField] private Button checkButton;
     [SerializeField] private Button callButton;
+    [SerializeField] private Button foldButton;
     [SerializeField] private AIPlayer aiPlayer;
+
 
     public event System.Action<int> OnBetPressed;
     public event System.Action OnCheckPressed;
+    public event System.Action OnFoldPressed;
     public event System.Action OnCallPressed;
 
 
@@ -22,6 +25,7 @@ public class AIPlayerView : MonoBehaviour, IChipsView
         betButton.onClick.AddListener(HandleBetButton);
         checkButton.onClick.AddListener(HandleCheckButton);
         callButton.onClick.AddListener(HandleCallButton);
+        foldButton.onClick.AddListener(HandleFoldButton);
     }
 
     private void HandleBetButton()
@@ -35,7 +39,10 @@ public class AIPlayerView : MonoBehaviour, IChipsView
             Debug.LogWarning("Not Enough Money!");
         }
     }
-
+    private void HandleFoldButton()
+    {
+        OnFoldPressed?.Invoke();
+    }
     private void HandleCheckButton()
     {
         OnCheckPressed?.Invoke();

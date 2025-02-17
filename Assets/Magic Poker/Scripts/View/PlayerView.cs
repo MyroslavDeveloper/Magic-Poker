@@ -9,11 +9,13 @@ public class PlayerView : MonoBehaviour, IChipsView
     [SerializeField] private Button betButton;
     [SerializeField] private Button checkButton;
     [SerializeField] private Button callButton;
+    [SerializeField] private Button foldButton;
     [SerializeField] private PlayerPresenter playerPresenter;
 
     public event System.Action<int> OnBetPressed;
     public event System.Action OnCheckPressed;
     public event System.Action OnCallPressed;
+    public event System.Action OnFoldPressed;
 
 
 
@@ -22,6 +24,7 @@ public class PlayerView : MonoBehaviour, IChipsView
         betButton.onClick.AddListener(HandleBetButton);
         checkButton.onClick.AddListener(HandleCheckButton);
         callButton.onClick.AddListener(HandleCallButton);
+        foldButton.onClick.AddListener(HandleFoldButton);
     }
 
     private void HandleBetButton()
@@ -45,7 +48,10 @@ public class PlayerView : MonoBehaviour, IChipsView
     {
         OnCallPressed?.Invoke();
     }
-
+    private void HandleFoldButton()
+    {
+        OnFoldPressed?.Invoke();
+    }
     public void UpdateChipsDisplay(int chips)
     {
         chipsText.text = $"Chips: {chips}";

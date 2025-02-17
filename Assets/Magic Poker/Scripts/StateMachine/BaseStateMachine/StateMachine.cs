@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 public abstract class StateMachine<TState> where TState : Enum
 {
+    public event Action Dealing;
     public Queue<TState> stateQueue = new();
     public Dictionary<TState, State> states = new();
     public State current { get; private set; }
@@ -48,6 +50,7 @@ public abstract class StateMachine<TState> where TState : Enum
     }
     public void RestartRound()
     {
+        Dealing?.Invoke();
         gameFlowManager.NextRound();
         InitializeQueue(initialStates);
         StartNextState();

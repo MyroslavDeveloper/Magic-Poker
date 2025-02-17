@@ -53,7 +53,7 @@ public class PlayersTurnController
         bool AllTotalBetEqual = players.All(p => p.TolalBet == players[0].TolalBet);
         return AllPlayersMadeTurn && AllTotalBetEqual;
     }
-    private void ChangePlayer()
+    public void ChangePlayer()
     {
         currentPlayer = NextPlayer();
         Debug.Log(currentPlayer);

@@ -9,7 +9,8 @@ public class BankPresenter : IDisposable, IInitializable
     [Inject] private BankView bankView;
     [Inject] private Player player;
     [Inject] private AIPlayer aiPlayer;
-    [Inject] private PokerGame pokerGame;
+    [Inject] private IPlayer[] players;
+    [Inject] private DealStateMachine dealStateMachine;
     public BankPresenter()
     {
         Debug.Log("BankPresenter создан!");
@@ -32,9 +33,10 @@ public class BankPresenter : IDisposable, IInitializable
     public void Dispose()
     {
 
+
         player.bettedChipts -= AddChips;
         aiPlayer.bettedChipts -= AddChips;
-        pokerGame.CheckedWiner -= ClearBank;
+        dealStateMachine.Dealing -= ClearBank;
 
     }
     [Inject]
@@ -43,10 +45,10 @@ public class BankPresenter : IDisposable, IInitializable
         // Убираем старые подписки перед повторной подпиской
         player.bettedChipts -= AddChips;
         aiPlayer.bettedChipts -= AddChips;
-        pokerGame.CheckedWiner -= ClearBank;
+        dealStateMachine.Dealing -= ClearBank;
 
         // Теперь подписываемся
-        pokerGame.CheckedWiner += ClearBank;
+        dealStateMachine.Dealing += ClearBank;
         player.bettedChipts += AddChips;
         aiPlayer.bettedChipts += AddChips;
     }

@@ -7,6 +7,10 @@ using Zenject;
 public class PlayerPresenter : BasePlayerPresenter<Player, PlayerView>
 {
     [Inject] private IPlayer[] players;
+    [Inject] private IBank bank;
+    [Inject] private AIPlayerPresenter aiPlayerPresenter;
+    [Inject] private DealStateMachine dealStateMachine;
+    [Inject] private PlayersTurnController playersTurnController;
 
     public override void Dispose()
     {
@@ -16,6 +20,18 @@ public class PlayerPresenter : BasePlayerPresenter<Player, PlayerView>
     public void HandleBet(int amount)
     {
         player.BetChips(amount, false);
+        UpdateView();
+    }
+    public void HandleFold()
+    {
+        aiPlayerPresenter.AddChips(bank.chips);
+        dealStateMachine.RestartRound();
+        playersTurnController.ChangePlayer();
+        foreach (var player in players)
+        {
+            player.ClearTotalBet();
+            player.ClearTurned();
+        }
         UpdateView();
     }
     public void HandleCheck()
@@ -49,6 +65,7 @@ public class PlayerPresenter : BasePlayerPresenter<Player, PlayerView>
         view.OnBetPressed += HandleBet;
         view.OnCheckPressed += HandleCheck;
         view.OnCallPressed += HandleCall;
+        view.OnFoldPressed += HandleFold;
     }
 }
 
