@@ -9,11 +9,11 @@ public class PlayerView : MonoBehaviour, IChipsView
     [SerializeField] private Button betButton;
     [SerializeField] private Button checkButton;
     [SerializeField] private Button callButton;
-    [SerializeField] private Player player;
+    [SerializeField] private PlayerPresenter playerPresenter;
 
     public event System.Action<int> OnBetPressed;
     public event System.Action OnCheckPressed;
-    public event System.Action<int> OnCallPressed;
+    public event System.Action OnCallPressed;
 
 
 
@@ -38,19 +38,12 @@ public class PlayerView : MonoBehaviour, IChipsView
 
     private void HandleCheckButton()
     {
-        if (player.TolalBet == 0)
-        {
-            OnCheckPressed?.Invoke();
-        }
-        else
-        {
-            Debug.LogWarning("Can't check when there's a bet!");
-        }
+        OnCheckPressed?.Invoke();
     }
 
     private void HandleCallButton()
     {
-        OnCallPressed?.Invoke(player.TolalBet);
+        OnCallPressed?.Invoke();
     }
 
     public void UpdateChipsDisplay(int chips)

@@ -13,7 +13,7 @@ public class AIPlayerView : MonoBehaviour, IChipsView
 
     public event System.Action<int> OnBetPressed;
     public event System.Action OnCheckPressed;
-    public event System.Action<int> OnCallPressed;
+    public event System.Action OnCallPressed;
 
 
 
@@ -38,19 +38,12 @@ public class AIPlayerView : MonoBehaviour, IChipsView
 
     private void HandleCheckButton()
     {
-        if (aiPlayer.TolalBet == 0)
-        {
-            OnCheckPressed?.Invoke();
-        }
-        else
-        {
-            Debug.LogWarning("Can't check when there's a bet!");
-        }
+        OnCheckPressed?.Invoke();
     }
 
     private void HandleCallButton()
     {
-        OnCallPressed?.Invoke(aiPlayer.TolalBet);
+        OnCallPressed?.Invoke();
     }
 
     public void UpdateChipsDisplay(int chips)

@@ -1,10 +1,13 @@
 using System;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using Zenject;
 
 public class PlayerPresenter : BasePlayerPresenter<Player, PlayerView>
 {
-    private int minBet = 0;
+    [Inject] private IPlayer[] players;
+
     public override void Dispose()
     {
         base.Dispose();
@@ -15,20 +18,30 @@ public class PlayerPresenter : BasePlayerPresenter<Player, PlayerView>
         player.BetChips(amount, false);
         UpdateView();
     }
-    private void HandleCheck()
+    public void HandleCheck()
     {
-        Debug.Log("Player checked.");
-    }
-    private void HandleCall(int betAmount)
-    {
-        if (player.GetChips() >= minBet)
+        if (players.All(p => p.TolalBet == players[0].TolalBet))
         {
-            player.BetChips(minBet, false);
+            player.Check();
+            Debug.Log("Check");
+
         }
         else
         {
-            Debug.LogWarning("Not enough chips to call!");
+            Debug.Log("Cant");
         }
+
+    }
+    private void HandleCall()
+    {
+        int betAmount = Math.Abs(players[0].TolalBet - players[1].TolalBet);
+        if (player.GetChips() < betAmount)
+        {
+            player.BetChips(player.GetChips(), false);
+            Debug.Log("ALl In");
+        }
+        player.BetChips(betAmount, false);
+        UpdateView();
     }
     public override void Initialize()
     {

@@ -5,9 +5,7 @@ using Zenject;
 public class StateManager : IInitializable
 {
     [Inject] private DealStateMachine dealStateMachine;
-    [Inject] private Player player;
-    [Inject] private AIPlayer aiPlayer;
-    [Inject] private PlayerView playerView;
+
     [Inject] private Button buttonActionCompleted;
 
 
@@ -19,6 +17,7 @@ public class StateManager : IInitializable
         dealStateMachine.InitializeQueue(dealStateMachine.states.Keys);
         dealStateMachine.StartNextState();
         buttonActionCompleted.onClick.AddListener(ActionCompleted);
+        ActionCompleted();
     }
 
     private void ActionCompleted()

@@ -21,13 +21,4 @@ public class GameFlowManager : MonoBehaviour
         NextDeal?.Invoke();
     }
 
-    private void StartNewRound()
-    {
-
-        feelingHand.DealStartingHands();
-        feelingBoard.FeelFlop();
-        feelingBoard.FeelTurn();
-        feelingBoard.FeelRiver();
-    }
-
 }

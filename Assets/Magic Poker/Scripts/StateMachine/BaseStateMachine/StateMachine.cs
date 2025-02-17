@@ -5,11 +5,12 @@ using Zenject;
 
 public abstract class StateMachine<TState> where TState : Enum
 {
-    protected Queue<TState> stateQueue = new();
+    public Queue<TState> stateQueue = new();
     public Dictionary<TState, State> states = new();
     public State current { get; private set; }
     private List<TState> initialStates;
     [Inject] protected GameFlowManager gameFlowManager;
+    [Inject] private PokerGame pokerGame;
 
     [Inject]
     protected abstract void Container();
@@ -39,6 +40,8 @@ public abstract class StateMachine<TState> where TState : Enum
         }
         else
         {
+            // TODO: CHeckWine
+            pokerGame.DetermineWinner();
             Debug.Log("Все состояния завершены. Начинаем новый раунд.");
             RestartRound();
         }
@@ -47,6 +50,7 @@ public abstract class StateMachine<TState> where TState : Enum
     {
         gameFlowManager.NextRound();
         InitializeQueue(initialStates);
+        StartNextState();
         StartNextState();
     }
 

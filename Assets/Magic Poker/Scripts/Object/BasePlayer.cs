@@ -18,12 +18,21 @@ public abstract class BasePlayer : IPlayer
         Array.Copy(cards, startHand, cards.Length);
     }
 
-    public void PlayerTurned()
+    private void PlayerTurned()
     {
         MakeTurn = true;
         playerTurnCompleted?.Invoke();
     }
+    public void ClearTurned()
+    {
+        MakeTurn = false;
 
+    }
+    public void ClearTotalBet()
+    {
+        TolalBet = 0;
+    }
+    // TODO : Clear )) 
     public Card[] GetStartHand() => startHand;
 
     public virtual void BetChips(int amount, bool isBlind)
@@ -41,6 +50,11 @@ public abstract class BasePlayer : IPlayer
             PlayerTurned();
         }
     }
+    public virtual void Check()
+    {
+        PlayerTurned();
+    }
+
 
     public void ClearStartHand()
     {
